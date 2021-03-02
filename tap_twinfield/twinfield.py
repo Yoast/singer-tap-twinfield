@@ -1,23 +1,32 @@
-"""Twinfield API."""
+"""Twinfield API Client."""
 # -*- coding: utf-8 -*-
 
 import logging
 import os
+from datetime import date, datetime
+from typing import Callable, Generator, List
 
 import pandas as pd
+import singer
+from dateutil.rrule import MONTHLY, rrule
 from defusedxml import ElementTree
 from lxml import etree, html
 from lxml.html import HtmlElement
 from zeep import Client
 
+from tap_twinfield.cleaners import CLEANERS
+from tap_twinfield.queries import QUERIES
 
+# Disable warnings for sub packages
 logging.getLogger('zeep').setLevel(logging.WARNING)
 logging.getLogger('urllib3').setLevel(logging.WARNING)
 
 
-LOGIN_URL: str = 'https://login.twinfield.com/webservices/session.asmx?wsdl'
-ENDPOINT_SESSION: str = '/webservices/session.asmx?wsdl'
-ENDPOINT_PROCESSXML: str = '/webservices/processxml.asmx?wsdl'
+API_SCHEME: str = 'https://'
+API_BASE_URL: str = 'login.twinfield.com'
+API_BASE_PATH: str = '/webservices'
+API_PATH_SESSION: str = '/session.asmx?wsdl'
+API_PATH_PROCESS_XML: str = '/processxml.asmx?wsdl'
 
 
 class Twinfield(object):  # noqa: WPS214, WPS230
@@ -45,7 +54,9 @@ class Twinfield(object):  # noqa: WPS214, WPS230
         self._auth_header: dict = {}
         self.cluser: str
         self._logged_in: bool = False
-        self._setup_logging()
+
+        # Setup logger
+        self.logger: logging.RootLogger = singer.get_logger()
 
         self._login()
         self.session: Client = self._create_session()
@@ -61,7 +72,7 @@ class Twinfield(object):  # noqa: WPS214, WPS230
         """
         if not self.session:
             raise RuntimeError(
-                'Must create a session before company can be switched'
+                'Must create a session before company can be switched',
             )
 
         # Query API
@@ -72,7 +83,7 @@ class Twinfield(object):  # noqa: WPS214, WPS230
 
         self.logger.info(f'Switched to company: {company}')
 
-    def export_data(self, query: str) -> pd.DataFrame:
+    def export_data(self, query: str) -> List[dict]:  # noqa: WPS210
         """Export data from Twinfield.
 
         Arguments:
@@ -82,7 +93,7 @@ class Twinfield(object):  # noqa: WPS214, WPS230
             RuntimeError: When not logged in
 
         Returns:
-            pd.DataFrame -- Query output
+            List[dict] -- Query output
         """
         if not self._logged_in:
             raise RuntimeError('Must login before data can be exported')
@@ -90,25 +101,30 @@ class Twinfield(object):  # noqa: WPS214, WPS230
         self.logger.info('Export query')
 
         # Query API
-        proces: Client = Client(self.cluster + ENDPOINT_PROCESSXML)
+        proces: Client = Client(f'{self.cluster}{API_BASE_PATH}{API_PATH_PROCESS_XML}')
         response: str = proces.service.ProcessXmlString(
             query,
             _soapheaders={'Header': self._auth_header},
         )
 
-        # Parse data
-        
-        self.logger.debug(response[:1000])
+        # Get Twinfield data
         root: ElementTree.Element = ElementTree.fromstring(response)
+
+        # Get columns
         columns: list = [element.attrib['label'] for element in root[0]]
         columns.append('?')
+
+        # Get data
         twin_data: list = [[field.text for field in row] for row in root[1::]]
-        self.logger.debug(columns)
-        # self.logger.debug(twin_data)
 
         # Convert to DataFrame
         df: pd.DataFrame = pd.DataFrame(twin_data, columns=columns)
-        return df.drop('?', axis=1)
+
+        # Remove unknown columns
+        df.drop('?', axis=1, inplace=True)
+
+        # Return rows
+        return df.to_dict(orient='records')
 
     def get_all_browse_fields(self) -> str:
         """Retrieve all possible browse fields.
@@ -116,15 +132,15 @@ class Twinfield(object):  # noqa: WPS214, WPS230
         Returns:
             str -- All possible browse fields
         """
-        query: str = '''
+        query: str = """
         <list>
             <type>browsefields</type>
         </list>
-        '''
+        """
         self.logger.info('Retrieve all possible browse fields')
 
         # Query API
-        proces: Client = Client(self.cluster + ENDPOINT_PROCESSXML)
+        proces: Client = Client(f'{self.cluster}{API_PATH_PROCESS_XML}')
         response: str = proces.service.ProcessXmlString(
             query,
             _soapheaders={'Header': self._auth_header},
@@ -134,7 +150,11 @@ class Twinfield(object):  # noqa: WPS214, WPS230
         root: HtmlElement = html.fromstring(response)
         return etree.tostring(root, encoding='unicode', pretty_print=True)
 
-    def get_browse_fields(self, code: str, to_file: bool = False) -> str:
+    def get_browse_fields(  # noqa: WPS210
+        self,
+        code: str,
+        to_file: bool = False,
+    ) -> str:
         """Retrieve all possible browse fields for a code.
 
         Arguments:
@@ -146,16 +166,16 @@ class Twinfield(object):  # noqa: WPS214, WPS230
         Returns:
             str -- Browse fields for the browse code
         """
-        query: str = f'''
+        query: str = f"""
         <read>
             <type>browse</type>
             <office>{self.office}</office>
             <code>{code}</code>
-        </read>'''
+        </read>"""
         self.logger.info(f'Retrieving browse fields for browse code: {code}')
 
         # Query API
-        proces: Client = Client(self.cluster + ENDPOINT_PROCESSXML)
+        proces: Client = Client(f'{self.cluster}{API_PATH_PROCESS_XML}')
         response: str = proces.service.ProcessXmlString(
             query,
             _soapheaders={'Header': self._auth_header},
@@ -175,27 +195,83 @@ class Twinfield(object):  # noqa: WPS214, WPS230
 
         return out
 
-    def _setup_logging(self) -> None:
-        """Set up logging."""
-        self.logger: logging.Logger = logging.getLogger('twinfield')
-        stream_handler: logging.StreamHandler = logging.StreamHandler()
-        formatter: logging.Formatter = logging.Formatter(
-            '%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
+    def bank_transactions(  # noqa: WPS210
+        self,
+        start_date: str,
+    ) -> Generator[dict, None, None]:
+        """Retrieve bank transactions (code: 410).
+
+        Arguments:
+            start_date {str} -- Start date e.g. 2021-01
+
+        Returns:
+            Generator[dict, None, None] -- Bank transactions
+        """
+        # Retrieve query
+        query: str = QUERIES['410']
+
+        # Retrieve cleanner
+        cleaner: Callable = CLEANERS.get('bank_transactions', {})
+
+        # For every month from start_date until now
+        for date_month in self._start_month_till_now(start_date):
+
+            # Replace dates in placeholders
+            query = query.replace(':period_lower:', date_month)
+            query = query.replace(':period_upper:', date_month)
+
+            # Perform query
+            export: List[dict] = self.export_data(query)
+
+            # Yield data after cleaning
+            yield from (
+                cleaner(row, number)
+                for number, row in enumerate(export)
+            )
+
+    def _start_month_till_now(self, start_date: str) -> Generator:
+        """Yield YYYY/MM for every month until now.
+
+        Arguments:
+            start_date {str} -- Start month e.g. 2020-01
+
+        Yields:
+            Generator -- Every month until now.
+        """
+        # Parse input date
+        year: int = int(start_date.split('-')[0])
+        month: int = int(start_date.split('-')[1].lstrip())
+
+        # Setup start period
+        period: date = date(year, month, 1)
+
+        # Setup itterator
+        dates: rrule = rrule(
+            freq=MONTHLY,
+            dtstart=period,
+            until=datetime.utcnow(),
         )
-        stream_handler.setFormatter(formatter)
-        self.logger.addHandler(stream_handler)
-        self.logger.setLevel(logging.DEBUG)
+
+        # Yield dates in YYYY/MM format
+        yield from (date_month.strftime('%Y/%m') for date_month in dates)
 
     def _login(self) -> None:
         """Authenticate with the API."""
-        login: Client = Client(LOGIN_URL)
+        url: str = (
+            f'{API_SCHEME}{API_BASE_URL}{API_BASE_PATH}{API_PATH_SESSION}'
+        )
 
-        auth: dict = login.service.Logon(
+        # Setup client
+        client: Client = Client(url)
+
+        # Login
+        auth: dict = client.service.Logon(
             self.username,
             self.password,
             self.organisation,
         )
 
+        # Save headers
         self._auth_header = auth['header']['Header']
         self.cluster: str = auth['body']['cluster']
         self._logged_in = True
@@ -220,4 +296,4 @@ class Twinfield(object):  # noqa: WPS214, WPS230
             )
 
         self.logger.debug('Creating a session')
-        return Client(self.cluster + ENDPOINT_SESSION)
+        return Client(f'{self.cluster}{API_BASE_PATH}{API_PATH_SESSION}')
