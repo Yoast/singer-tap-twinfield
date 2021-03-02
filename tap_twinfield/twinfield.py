@@ -28,6 +28,7 @@ class Twinfield(object):  # noqa: WPS214, WPS230
         username: str,
         password: str,
         organisation: str,
+        office: str,
     ) -> None:
         """Initialize object.
 
@@ -35,10 +36,12 @@ class Twinfield(object):  # noqa: WPS214, WPS230
             username {str} -- Twinfield username
             password {str} -- Twinfield password
             organisation {str} -- Twinfield organisation
+            office {str} -- Twinfield office code
         """
         self.username: str = username
         self.password: str = password
         self.organisation: str = organisation
+        self.office: str = office
         self._auth_header: dict = {}
         self.cluser: str
         self._logged_in: bool = False
@@ -146,7 +149,7 @@ class Twinfield(object):  # noqa: WPS214, WPS230
         query: str = f'''
         <read>
             <type>browse</type>
-            <office>101043</office>
+            <office>{self.office}</office>
             <code>{code}</code>
         </read>'''
         self.logger.info(f'Retrieving browse fields for browse code: {code}')
