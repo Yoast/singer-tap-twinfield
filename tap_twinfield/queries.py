@@ -5,16 +5,16 @@ from types import MappingProxyType
 
 QUERIES: MappingProxyType = MappingProxyType({
     '410': """
- <columns code="410">
+<columns code="410">
     <column id="1">
-        <field>fin.trs.head.yearperiod</field>
-        <label>Periode</label>
-        <visible>true</visible>
-        <ask>true</ask>
-        <operator>between</operator>
-        <from>:period_lower:</from>
-        <to>:period_upper:</to>
-        <finderparam/>
+      <field>fin.trs.head.yearperiod</field>
+      <label>Periode</label>
+      <visible>true</visible>
+      <ask>true</ask>
+      <operator>between</operator>
+      <from>2020/01</from>
+      <to>2020/01</to>
+      <finderparam/>
     </column>
     <column id="2">
         <field>fin.trs.head.bankcode</field>
@@ -38,7 +38,7 @@ QUERIES: MappingProxyType = MappingProxyType({
     </column>
     <column id="4">
         <field>fin.trs.head.shortname</field>
-        <label>Naam</label>
+        <label>Bank Naam</label>
         <visible>true</visible>
         <ask>false</ask>
         <operator>none</operator>
@@ -78,7 +78,7 @@ QUERIES: MappingProxyType = MappingProxyType({
     </column>
     <column id="8">
         <field>fin.trs.line.dim1name</field>
-        <label>Naam</label>
+        <label>Grootboek Naam</label>
         <visible>true</visible>
         <ask>false</ask>
         <operator>none</operator>
