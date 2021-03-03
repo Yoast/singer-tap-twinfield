@@ -670,6 +670,6 @@ QUERIES: MappingProxyType = MappingProxyType({
         <to/>
         <finderparam/>
     </column>
-  </columns>
-</browse>""",
+</columns>
+""",
 })
