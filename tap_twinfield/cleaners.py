@@ -121,7 +121,7 @@ def clean_bank_transactions(
     return row
 
 
-def clean_transaction_details(
+def clean_general_ledger_details(
     row: dict,
     row_number: int,
 ) -> dict:
@@ -155,5 +155,5 @@ def clean_transaction_details(
 # Collect all cleaners
 CLEANERS: MappingProxyType = MappingProxyType({
     'bank_transactions': clean_bank_transactions,
-    'transaction_details': clean_transaction_details,
+    'general_ledger_details': clean_general_ledger_details,
 })

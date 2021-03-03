@@ -216,7 +216,7 @@ class Twinfield(object):  # noqa: WPS214, WPS230
         # Retrieve query
         query: str = QUERIES['410']
 
-        # Retrieve cleanner
+        # Retrieve cleaner
         cleaner: Callable = CLEANERS.get('bank_transactions', {})
 
         # For every month from start_date until now
@@ -227,6 +227,47 @@ class Twinfield(object):  # noqa: WPS214, WPS230
             query = query.replace(':period_upper:', date_month)
 
             # Perform query
+            self.logger.info(
+                'Extracting bank transactions (410) for month '
+                f'{date_month}',
+            )
+            export: List[dict] = self.export_data(query)
+
+            # Yield data after cleaning
+            yield from (
+                cleaner(row, number)
+                for number, row in enumerate(export)
+            )
+
+    def general_ledger_details(  # noqa: WPS210
+        self,
+        start_date: str,
+    ) -> Generator[dict, None, None]:
+        """Retrieve transactions details (code: 030_3).
+
+        Arguments:
+            start_date {str} -- Start date e.g. 2021-01
+
+        Returns:
+            Generator[dict, None, None] -- Bank transactions
+        """
+        query: str = QUERIES['030_3']
+
+        # Retrieve cleaner
+        cleaner: Callable = CLEANERS.get('transaction_details', {})
+
+        # For every month from start_date until now
+        for date_month in self._start_month_till_now(start_date):
+
+            # Replace dates in placeholders
+            query = query.replace(':period_lower:', date_month)
+            query = query.replace(':period_upper:', date_month)
+
+            # Perform query
+            self.logger.info(
+                'Extracting transaction details (030_3) for month '
+                f'{date_month}',
+            )
             export: List[dict] = self.export_data(query)
 
             # Yield data after cleaning
