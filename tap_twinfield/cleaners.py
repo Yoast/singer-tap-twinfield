@@ -135,7 +135,7 @@ def clean_general_ledger_details(
         dict -- Cleaned row
     """
     # Get the mapping from the STREAMS
-    mapping: Optional[dict] = STREAMS['transaction_details'].get('mapping')
+    mapping: Optional[dict] = STREAMS['general_ledger_details'].get('mapping')
 
     # Create primary key
     number: str = str(row_number).rjust(10, '0')

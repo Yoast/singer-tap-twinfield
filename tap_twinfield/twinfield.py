@@ -265,7 +265,7 @@ class Twinfield(object):  # noqa: WPS214, WPS230
 
             # Perform query
             self.logger.info(
-                'Extracting transaction details (030_3) for month '
+                'Extracting general ledger details (030_3) for month '
                 f'{date_month}',
             )
             export: List[dict] = self.export_data(query)
