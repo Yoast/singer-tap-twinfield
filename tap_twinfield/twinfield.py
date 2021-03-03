@@ -10,8 +10,8 @@ import pandas as pd
 import singer
 from dateutil.rrule import MONTHLY, rrule
 from defusedxml import ElementTree
-from lxml import etree, html
-from lxml.html import HtmlElement
+from lxml import etree  # noqa: S410: lxml is only used for pretty printing
+from lxml.html import HtmlElement, fromstring  # noqa: S410
 from zeep import Client
 
 from tap_twinfield.cleaners import CLEANERS
@@ -101,7 +101,9 @@ class Twinfield(object):  # noqa: WPS214, WPS230
         self.logger.info('Export query')
 
         # Query API
-        proces: Client = Client(f'{self.cluster}{API_BASE_PATH}{API_PATH_PROCESS_XML}')
+        proces: Client = Client(
+            f'{self.cluster}{API_BASE_PATH}{API_PATH_PROCESS_XML}',
+        )
         response: str = proces.service.ProcessXmlString(
             query,
             _soapheaders={'Header': self._auth_header},
@@ -140,14 +142,16 @@ class Twinfield(object):  # noqa: WPS214, WPS230
         self.logger.info('Retrieve all possible browse fields')
 
         # Query API
-        proces: Client = Client(f'{self.cluster}{API_PATH_PROCESS_XML}')
+        proces: Client = Client(
+            f'{self.cluster}{API_BASE_PATH}{API_PATH_PROCESS_XML}',
+        )
         response: str = proces.service.ProcessXmlString(
             query,
             _soapheaders={'Header': self._auth_header},
         )
 
         # Prettify output
-        root: HtmlElement = html.fromstring(response)
+        root: HtmlElement = fromstring(response)
         return etree.tostring(root, encoding='unicode', pretty_print=True)
 
     def get_browse_fields(  # noqa: WPS210
@@ -175,14 +179,16 @@ class Twinfield(object):  # noqa: WPS214, WPS230
         self.logger.info(f'Retrieving browse fields for browse code: {code}')
 
         # Query API
-        proces: Client = Client(f'{self.cluster}{API_PATH_PROCESS_XML}')
+        proces: Client = Client(
+            f'{self.cluster}{API_BASE_PATH}{API_PATH_PROCESS_XML}',
+        )
         response: str = proces.service.ProcessXmlString(
             query,
             _soapheaders={'Header': self._auth_header},
         )
 
         # Prettify output
-        root: HtmlElement = html.fromstring(response)
+        root: HtmlElement = fromstring(response)
         out: str = etree.tostring(root, encoding='unicode', pretty_print=True)
 
         # Save output to a file
