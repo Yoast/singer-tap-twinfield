@@ -1,0 +1,230 @@
+{
+	"selected": true,
+	"type": [
+		"null",
+		"object"
+	],
+	"additionalProperties": false,
+	"properties": {
+		"office": {
+			"type": "string"
+		},
+		"office_name": {
+			"type": "string"
+		},
+		"year": {
+			"type":	"number",
+			"format": "integer"
+		},
+		"period": {
+			"type":	"number",
+			"format": "integer"
+		},
+		"journal": {
+			"type": "string"
+		},
+		"booking_number": {
+			"type":	"number",
+			"format": "integer"
+		},
+		"status": {
+			"type": "string"
+		},
+		"book_date": {
+			"type": "string",
+			"format": "date-time"
+		},
+		"curcode": {
+			"type": "string"
+		},
+		"relation": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"relation_name": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"input_date": {
+			"type": "string",
+			"format": "date-time"
+		},
+		"username": {
+			"type": "string"
+		},
+		"ledger": {
+			"type":	"number",
+			"format": "integer"
+		},
+		"ledger_name": {
+			"type": "string"
+		},
+		"ledger_type": {
+			"type": "string"
+		},
+		"cost_centre": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"cost_centre_name": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"cost_centre_type": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"project": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"project_name": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"project_type": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"valuesigned": {
+			"type": "number"
+		},
+		"base_valuesigned": {
+			"type": "number"
+		},
+		"report_valuesigned": {
+			"type": [
+				"null",
+				"number"
+			]
+		},
+		"debitcredit": {
+			"type": "string"
+		},
+		"vatcode": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"vatbasevaluesigned": {
+			"type": [
+				"null",
+				"number"
+			] 
+		},
+		"quantity": {
+			"type": [
+				"null",
+				"number"
+			],
+			"format": "integer"
+		},
+		"cheque_number": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"description": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"invoice_number": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"group1": {
+			"type": "string"
+		},
+		"group1_name": {
+			"type": "string"
+		},
+		"group2": {
+			"type": "string"
+		},
+		"group2_name": {
+			"type": "string"
+		},
+		"group3": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"group3_name": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"group4": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"group4_name": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"group5": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"group5_name": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"freetext1": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"freetext2": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"freetext3": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"origin": {
+			"type": "string"
+		},
+		"type": {
+			"type": "string"
+		}
+	}
+}

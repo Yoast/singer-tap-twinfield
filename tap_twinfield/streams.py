@@ -305,4 +305,156 @@ STREAMS: MappingProxyType = MappingProxyType({
             },
         },
     },
+    'general_ledger_details': {
+        'key_properties': 'id',
+        'replication_method': 'INCREMENTAL',
+        'replication_key': 'id',
+        'bookmark': 'start_date',
+        'mapping': {
+            'id': {
+                'map': 'id', 'null': False,
+            },
+            'Administratie': {
+                'map': 'office', 'null': False,
+            },
+            'Adm.naam': {
+                'map': 'office_name', 'null': False,
+            },
+            'Jaar': {
+                'map': 'year', 'type': int, 'null': False,
+            },
+            'Periode': {
+                'map': 'period', 'type': int, 'null': False,
+            },
+            'Dagboek.': {
+                'map': 'journal', 'null': False,
+            },
+            'Boekingsnummer': {
+                'map': 'booking_number', 'type': int, 'null': False,
+            },
+            'Status': {
+                'map': 'status', 'null': False,
+            },
+            'Boekdatum': {
+                'map': 'book_date', 'type': date_parser, 'null': False,
+            },
+            'Valuta': {
+                'map': 'curcode', 'null': False,
+            },
+            'Relatie': {
+                'map': 'relation', 'null': True,
+            },
+            'Relatienaam': {
+                'map': 'startvalue', 'null': True,
+            },
+            'Invoerdatum': {
+                'map': 'input_date', 'type': date_parser, 'null': False,
+            },
+            'Gebruikersnaam': {
+                'map': 'username', 'null': False,
+            },
+            'Grootboekrek.': {
+                'map': 'ledger', 'type': int, 'null': False,
+            },
+            'Grootboekrek.naam': {
+                'map': 'ledger_name', 'null': False,
+            },
+            'Dimensietype 1': {
+                'map': 'ledger_type', 'null': False,
+            },
+            'Kpl./rel.': {
+                'map': 'cost_centre', 'null': True,
+            },
+            'Kpl./rel.naam': {
+                'map': 'cost_centre_name', 'null': True,
+            },
+            'Dimensietype 2': {
+                'map': 'cost_centre_type', 'null': True,
+            },
+            'Act./proj.': {
+                'map': 'project', 'null': True,
+            },
+            'Act./proj.naam': {
+                'map': 'project_name', 'null': True,
+            },
+            'Dimensietype 3': {
+                'map': 'project_type', 'null': True,
+            },
+            'Bedrag': {
+                'map': 'valuesigned', 'type': Decimal, 'null': False,
+            },
+            'Basisbedrag': {
+                'map': 'base_valuesigned', 'type': Decimal, 'null': False,
+            },
+            'Rapportagebedrag': {
+                'map': 'report_valuesigned', 'type': Decimal, 'null': True,
+            },
+            'D/C': {
+                'map': 'debitcredit', 'null': False,
+            },
+            'Btw-code': {
+                'map': 'vatcode', 'null': True,
+            },
+            'Btw-bedrag': {
+                'map': 'vatbasevaluesigned', 'type': Decimal, 'null': True,
+            },
+            'Aantal': {
+                'map': 'quantity', 'type': int, 'null': True,
+            },
+            'Cheque': {
+                'map': 'cheque_number', 'null': True,
+            },
+            'Omschrijving': {
+                'map': 'description', 'null': True,
+            },
+            'Factuurnummer': {
+                'map': 'invoice_number', 'null': True,
+            },
+            'Groep 1': {
+                'map': 'group1', 'null': False,
+            },
+            'Groepnaam 1': {
+                'map': 'group1_name', 'null': False,
+            },
+            'Groep 2': {
+                'map': 'group2', 'null': False,
+            },
+            'Groepnaam 2': {
+                'map': 'group2_name', 'null': False,
+            },
+            'Groep 3': {
+                'map': 'group3', 'null': True,
+            },
+            'Groepnaam 3': {
+                'map': 'group3_name', 'null': True,
+            },
+            'Groep 4': {
+                'map': 'group4', 'null': True,
+            },
+            'Groepnaam 4': {
+                'map': 'group4_name', 'null': True,
+            },
+            'Groep 5': {
+                'map': 'group5', 'null': True,
+            },
+            'Groepnaam 5': {
+                'map': 'group5_name', 'null': True,
+            },
+            'Vrij tekstveld 1': {
+                'map': 'freetext1', 'null': True,
+            },
+            'Vrij tekstveld 2': {
+                'map': 'freetext2', 'null': True,
+            },
+            'Vrij tekstveld 3': {
+                'map': 'freetext3', 'null': True,
+            },
+            'Boekingsoorsprong': {
+                'map': 'origin', 'null': False,
+            },
+            'transactie type groep': {
+                'map': 'type', 'null': False,
+            }
+        },
+    },
 })
