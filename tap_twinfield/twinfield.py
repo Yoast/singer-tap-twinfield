@@ -254,7 +254,7 @@ class Twinfield(object):  # noqa: WPS214, WPS230
         query: str = QUERIES['030_3']
 
         # Retrieve cleaner
-        cleaner: Callable = CLEANERS.get('transaction_details', {})
+        cleaner: Callable = CLEANERS.get('general_ledger_details', {})
 
         # For every month from start_date until now
         for date_month in self._start_month_till_now(start_date):

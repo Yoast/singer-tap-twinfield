@@ -217,7 +217,7 @@ QUERIES: MappingProxyType = MappingProxyType({
         <ask>true</ask>
         <operator>between</operator>
         <from>:period_lower:</from>
-        <to>:period_lower:</to>
+        <to>:period_upper:</to>
         <finderparam/>
     </column>
     <column id="6">
