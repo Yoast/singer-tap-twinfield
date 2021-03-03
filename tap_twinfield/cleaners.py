@@ -1,13 +1,10 @@
 """Cleaner functions."""
 # -*- coding: utf-8 -*-
 
-from datetime import date
 from types import MappingProxyType
 from typing import Any, Optional
 
 from tap_twinfield.streams import STREAMS
-
-# from tap_twinfield.streams import STREAMS
 
 
 class ConvertionError(ValueError):
