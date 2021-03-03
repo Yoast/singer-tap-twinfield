@@ -121,7 +121,39 @@ def clean_bank_transactions(
     return row
 
 
+def clean_transaction_details(
+    row: dict,
+    row_number: int,
+) -> dict:
+    """Clean transaction_details.
+
+    Arguments:
+        row {dict} -- Input row
+        row_number {int} -- Row number, used to construct primary key
+
+    Returns:
+        dict -- Cleaned row
+    """
+    # Get the mapping from the STREAMS
+    mapping: Optional[dict] = STREAMS['transaction_details'].get('mapping')
+
+    # Create primary key
+    number: str = str(row_number).rjust(10, '0')
+
+    period: str = row['Periode']
+    period = period.replace('/', '')
+    row['id'] = int(period + number)
+
+    # If a mapping has been defined in STREAMS, apply it
+    if mapping:
+        return clean_row(row, mapping)
+
+    # Else return the original row
+    return row
+
+
 # Collect all cleaners
 CLEANERS: MappingProxyType = MappingProxyType({
     'bank_transactions': clean_bank_transactions,
+    'transaction_details': clean_transaction_details,
 })
