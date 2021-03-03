@@ -213,7 +213,7 @@ QUERIES: MappingProxyType = MappingProxyType({
     <column id="5">
         <field>fin.trs.head.yearperiod</field>
         <label>Jaar/periode (JJJJ/PP)</label>
-        <visible>true</visible>
+        <visible>false</visible>
         <ask>true</ask>
         <operator>between</operator>
         <from>:period_lower:</from>
