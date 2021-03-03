@@ -326,7 +326,7 @@ STREAMS: MappingProxyType = MappingProxyType({
             'Periode': {
                 'map': 'period', 'type': int, 'null': False,
             },
-            'Dagboek.': {
+            'Dagboek': {
                 'map': 'journal', 'null': False,
             },
             'Boekingsnummer': {
@@ -365,7 +365,7 @@ STREAMS: MappingProxyType = MappingProxyType({
             'Kpl./rel.': {
                 'map': 'cost_centre', 'null': True,
             },
-            'Kpl./rel.naam': {
+            'Kpl.-/rel.naam': {
                 'map': 'cost_centre_name', 'null': True,
             },
             'Dimensietype 2': {
@@ -374,7 +374,7 @@ STREAMS: MappingProxyType = MappingProxyType({
             'Act./proj.': {
                 'map': 'project', 'null': True,
             },
-            'Act./proj.naam': {
+            'Act.-/proj.naam': {
                 'map': 'project_name', 'null': True,
             },
             'Dimensietype 3': {
