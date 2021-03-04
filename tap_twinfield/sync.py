@@ -8,7 +8,7 @@ import singer
 from singer.catalog import Catalog, CatalogEntry
 
 from tap_twinfield.streams import STREAMS
-from tap_twinfield.tools import tools
+from tap_twinfield import tools
 from tap_twinfield.twinfield import Twinfield
 
 LOGGER: logging.RootLogger = singer.get_logger()
