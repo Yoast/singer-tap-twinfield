@@ -1,4 +1,4 @@
-"""Adyen tap."""
+"""Twinfield tap."""
 # -*- coding: utf-8 -*-
 import logging
 from argparse import Namespace
@@ -11,7 +11,7 @@ from tap_twinfield.discover import discover
 from tap_twinfield.sync import sync
 from tap_twinfield.twinfield import Twinfield
 
-VERSION: str = pkg_resources.get_distribution('tap-adyen').version
+VERSION: str = pkg_resources.get_distribution('tap-twinfield').version
 LOGGER: logging.RootLogger = get_logger()
 REQUIRED_CONFIG_KEYS: tuple = (
     'username',

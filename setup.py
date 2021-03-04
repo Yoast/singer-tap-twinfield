@@ -9,7 +9,7 @@ setup(
     author='Stitch',
     url='https://github.com/Yoast/singer-tap-twinfield',
     classifiers=['Programming Language :: Python :: 3 :: Only'],
-    py_modules=['tap_adyen'],
+    py_modules=['tap_twinfield'],
     install_requires=[
         'defusedxml~=0.6.0',
         'lxml~=4.6.2',
