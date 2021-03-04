@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 from singer import metadata
 from singer.catalog import Catalog, CatalogEntry
+
 from tap_twinfield.schema import load_schemas
 from tap_twinfield.streams import STREAMS
 

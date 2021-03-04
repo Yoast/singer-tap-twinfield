@@ -7,9 +7,9 @@ import pkg_resources
 from singer import get_logger, utils
 from singer.catalog import Catalog
 
-from tap_twinfield.twinfield import Twinfield
 from tap_twinfield.discover import discover
 from tap_twinfield.sync import sync
+from tap_twinfield.twinfield import Twinfield
 
 VERSION: str = pkg_resources.get_distribution('tap-adyen').version
 LOGGER: logging.RootLogger = get_logger()

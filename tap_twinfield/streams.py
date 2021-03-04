@@ -454,7 +454,7 @@ STREAMS: MappingProxyType = MappingProxyType({
             },
             'transactie type groep': {
                 'map': 'type', 'null': False,
-            }
+            },
         },
     },
 })
