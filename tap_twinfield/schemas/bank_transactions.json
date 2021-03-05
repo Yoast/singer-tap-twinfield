@@ -11,8 +11,7 @@
 			"format": "integer"
 		},
 		"yearperiod": {
-			"type":	"string",
-			"format": "date-time"
+			"type":	"string"
 		},
 		"bank_code": {
 			"type": "string"

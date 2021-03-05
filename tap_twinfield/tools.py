@@ -1,7 +1,11 @@
 """Tools."""
 # -*- coding: utf-8 -*-
-from functools import reduce
 from typing import Optional
+
+import singer
+from singer.catalog import CatalogEntry
+
+from tap_twinfield.streams import STREAMS
 
 
 def clear_currently_syncing(state: dict) -> dict:
@@ -32,29 +36,56 @@ def get_stream_state(state: dict, tap_stream_id: str) -> dict:
     ).get(tap_stream_id)
 
 
-def retrieve_bookmark_with_path(path: str, row: dict) -> Optional[str]:
-    """Bookmark exists in the row of data which is an dictionary.
-
-    The bookmark can either be a key such as row[key] but also a subkey such as
-    row[key][subkey]. In the streams definition file, the key can be saved as
-    a string, but [key][subkey] cannot. Therefore, in the streams file, if we
-    want to use a subkey as bookmark, we save it in the format 'key.subkey',
-    which is our path in the dictionary.
-    This helper function parses the string and checks whether it has a dot.
-    If it has one, it returns the value of the subkey in the row of data, e.g.
-    row[key][subkey]. If not it returns the alue of the key, e.g row[path].
+def get_bookmark_value(
+    stream_name: str,
+    row: dict,
+) -> Optional[str]:
+    """Retrieve bookmark value from record.
 
     Arguments:
-        path {str} -- Path in the dictionary
-        row {dict} -- Data row
+        stream_name {str} -- Stream name
+        row {dict} -- Record
 
     Returns:
-        Optional[str] -- The value or from the key or subkey
+        str -- Bookmark value
     """
-    # If the path has a dot, then parse it as key and subkeys
-    if '.' in path:
-        return str(reduce(dict.get, path.split('.'), row))  # type: ignore
-    # Else if the path is just a key, parse it as a normal key
-    elif path:
-        return row[path]
+    if stream_name == 'bank_transactions':
+        # YYYY-MM
+        return row['yearperiod'].replace('/', '-')
+
+    elif stream_name == 'general_ledger_details':
+        # YYYY-MM
+
+        year: str = str(row['year'])
+        period: str = str(row['period']).rjust(2, '0')
+        return f'{year}-{period}'
     return None
+
+
+def update_bookmark(
+    stream: CatalogEntry,
+    bookmark: Optional[str],
+    state: dict,
+) -> None:
+    """Update the bookmark.
+
+    Arguments:
+        stream {CatalogEntry} -- Stream catalog
+        bookmark {Optional[str]} -- Record
+        state {dict} -- State
+    """
+    # Retrieve the value of the bookmark
+    if bookmark:
+        # Save the bookmark to the state
+        singer.write_bookmark(
+            state,
+            stream.tap_stream_id,
+            STREAMS[stream.tap_stream_id]['bookmark'],
+            bookmark,
+        )
+
+    # Clear currently syncing
+    clear_currently_syncing(state)
+
+    # Write the bootmark
+    singer.write_state(state)

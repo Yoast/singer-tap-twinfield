@@ -265,7 +265,7 @@ STREAMS: MappingProxyType = MappingProxyType({
                 'map': 'id', 'type': int, 'null': False,
             },
             'Periode': {
-                'map': 'yearperiod', 'type': date_parser, 'null': False,
+                'map': 'yearperiod', 'null': False,
             },
             'Bank': {
                 'map': 'bank_code', 'null': False,

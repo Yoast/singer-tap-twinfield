@@ -1,20 +1,20 @@
 """Sync data."""
 # -*- coding: utf-8 -*-
 import logging
+import sys
 from datetime import datetime, timezone
 from typing import Callable, Optional
 
 import singer
-from singer.catalog import Catalog, CatalogEntry
+from singer.catalog import Catalog
 
-from tap_twinfield.streams import STREAMS
 from tap_twinfield import tools
 from tap_twinfield.twinfield import Twinfield
 
 LOGGER: logging.RootLogger = singer.get_logger()
 
 
-def sync(  # noqa: WPS210
+def sync(  # noqa: WPS210, WPS213
     twinfield: Twinfield,
     state: dict,
     catalog: Catalog,
@@ -65,41 +65,19 @@ def sync(  # noqa: WPS210
         # E.g. if the state of the stream has a key 'start_date', it will be
         # used in the method as start_date='2021-01-01T00:00:00+0000'
         for row in tap_data(**stream_state):
-            sync_record(stream, row, state)
 
+            # Write a row to the stream
+            singer.write_record(
+                stream.tap_stream_id,
+                row,
+                time_extracted=datetime.now(timezone.utc),
+            )
 
-def sync_record(stream: CatalogEntry, row: dict, state: dict) -> None:
-    """Sync the record.
+            bookmark: Optional[str] = tools.get_bookmark_value(
+                stream.tap_stream_id,
+                row,
+            )
 
-    Arguments:
-        stream {CatalogEntry} -- Stream catalog
-        row {dict} -- Record
-        state {dict} -- State
-    """
-    # Retrieve the value of the bookmark
-    bookmark: Optional[str] = tools.retrieve_bookmark_with_path(
-        stream.replication_key,
-        row,
-    )
-
-    # Write a row to the stream
-    singer.write_record(
-        stream.tap_stream_id,
-        row,
-        time_extracted=datetime.now(timezone.utc),
-    )
-
-    if bookmark:
-        # Save the bookmark to the state
-        singer.write_bookmark(
-            state,
-            stream.tap_stream_id,
-            STREAMS[stream.tap_stream_id]['bookmark'],
-            bookmark,
-        )
-
-        # Clear currently syncing
-        tools.clear_currently_syncing(state)
-
-        # Write the bootmark
-        singer.write_state(state)
+        # Update bookmark
+        tools.update_bookmark(stream, bookmark, state)
+        sys.stdout.flush()
