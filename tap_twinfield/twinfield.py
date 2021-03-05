@@ -233,9 +233,10 @@ class Twinfield(object):  # noqa: WPS214, WPS230
             )
             export: List[dict] = self.export_data(query)
 
+            record_count: int = len(export)
             self.logger.info(
                 'Received bank transactions (410) for month '
-                f'{date_month}: {len(export)} records',
+                f'{date_month}: {record_count} records',
             )
 
             # Yield data after cleaning
@@ -276,9 +277,10 @@ class Twinfield(object):  # noqa: WPS214, WPS230
             )
             export: List[dict] = self.export_data(query)
 
+            record_count: int = len(export)
             self.logger.info(
                 'Received general ledger details (030_3) for month '
-                f'{date_month}: {len(export)} records',
+                f'{date_month}: {record_count} records',
             )
 
             # Yield data after cleaning
