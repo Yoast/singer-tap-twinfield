@@ -98,7 +98,7 @@ class Twinfield(object):  # noqa: WPS214, WPS230
         if not self._logged_in:
             raise RuntimeError('Must login before data can be exported')
 
-        self.logger.info('Export query')
+        self.logger.debug('Export query')
 
         # Query API
         proces: Client = Client(
@@ -213,14 +213,14 @@ class Twinfield(object):  # noqa: WPS214, WPS230
         Returns:
             Generator[dict, None, None] -- Bank transactions
         """
-        # Retrieve query
-        query: str = QUERIES['410']
-
         # Retrieve cleaner
         cleaner: Callable = CLEANERS.get('bank_transactions', {})
 
         # For every month from start_date until now
         for date_month in self._start_month_till_now(start_date):
+
+            # Retrieve query
+            query: str = QUERIES['410']
 
             # Replace dates in placeholders
             query = query.replace(':period_lower:', date_month)
@@ -232,6 +232,11 @@ class Twinfield(object):  # noqa: WPS214, WPS230
                 f'{date_month}',
             )
             export: List[dict] = self.export_data(query)
+
+            self.logger.info(
+                'Received bank transactions (410) for month '
+                f'{date_month}: {len(export)} records',
+            )
 
             # Yield data after cleaning
             yield from (
@@ -251,13 +256,14 @@ class Twinfield(object):  # noqa: WPS214, WPS230
         Returns:
             Generator[dict, None, None] -- Bank transactions
         """
-        query: str = QUERIES['030_3']
-
         # Retrieve cleaner
         cleaner: Callable = CLEANERS.get('general_ledger_details', {})
 
         # For every month from start_date until now
         for date_month in self._start_month_till_now(start_date):
+
+            # Retrieve query
+            query: str = QUERIES['030_3']
 
             # Replace dates in placeholders
             query = query.replace(':period_lower:', date_month)
@@ -269,6 +275,11 @@ class Twinfield(object):  # noqa: WPS214, WPS230
                 f'{date_month}',
             )
             export: List[dict] = self.export_data(query)
+
+            self.logger.info(
+                'Received general ledger details (030_3) for month '
+                f'{date_month}: {len(export)} records',
+            )
 
             # Yield data after cleaning
             yield from (
