@@ -6,6 +6,10 @@
 	],
 	"additionalProperties": false,
 	"properties": {
+		"id": {
+			"type": "number",
+			"format": "integer"
+		},
 		"yearperiod": {
 			"type":	"string",
 			"format": "date-time"

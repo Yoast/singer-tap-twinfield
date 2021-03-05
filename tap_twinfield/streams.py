@@ -262,7 +262,7 @@ STREAMS: MappingProxyType = MappingProxyType({
         'bookmark': 'start_date',
         'mapping': {
             'id': {
-                'map': 'id', 'null': False,
+                'map': 'id', 'type': int, 'null': False,
             },
             'Periode': {
                 'map': 'yearperiod', 'type': date_parser, 'null': False,
@@ -345,7 +345,7 @@ STREAMS: MappingProxyType = MappingProxyType({
                 'map': 'relation', 'null': True,
             },
             'Relatienaam': {
-                'map': 'startvalue', 'null': True,
+                'map': 'relation_name', 'null': True,
             },
             'Invoerdatum': {
                 'map': 'input_date', 'type': date_parser, 'null': False,
