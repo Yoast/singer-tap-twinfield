@@ -1,0 +1,55 @@
+{
+	"selected": true,
+	"type": [
+		"null",
+		"object"
+	],
+	"additionalProperties": false,
+	"properties": {
+		"id": {
+			"type": "number",
+			"format": "integer"
+		},
+		"yearperiod": {
+			"type":	"string"
+		},
+		"bank_code": {
+			"type": "string"
+		},
+		"bank_shortname": {
+			"type":	"string"
+		},
+		"entry_number": {
+			"type": "number",
+			"format": "interger"
+		},
+		"statement_number": {
+			"type": "number",
+			"format": "interger"
+		},
+		"ledger": {
+			"type": "string"
+		},
+		"ledger_name": {
+			"type": "string"
+		},
+		"curcode": {
+			"type": "string"
+		},
+		"value_signed": {
+			"type": "number"
+		},
+		"basevalue_signed": {
+			"type": "number"
+		},
+		"startvalue": {
+			"type": "number"
+		},
+		"closevalue": {
+			"type": "number"
+		},
+		"status": {
+			"type": "string"
+		}
+	}
+}
