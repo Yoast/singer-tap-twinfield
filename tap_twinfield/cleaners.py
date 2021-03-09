@@ -152,8 +152,40 @@ def clean_general_ledger_details(
     return row
 
 
+def clean_general_ledger_transactions(
+    row: dict,
+    row_number: int,
+) -> dict:
+    """Clean general ledger transactions.
+
+    Arguments:
+        row {dict} -- Input row
+        row_number {int} -- Row number, used to construct primary key
+
+    Returns:
+        dict -- Cleaned row
+    """
+    # Get the mapping from the STREAMS
+    mapping: Optional[dict] = STREAMS['bank_transactions'].get('mapping')
+
+    # Create primary key
+    number: str = str(row_number).rjust(10, '0')
+
+    period: str = row['Periode']
+    period = period.replace('/', '')
+    row['id'] = int(period + number)
+
+    # If a mapping has been defined in STREAMS, apply it
+    if mapping:
+        return clean_row(row, mapping)
+
+    # Else return the original row
+    return row
+
+
 # Collect all cleaners
 CLEANERS: MappingProxyType = MappingProxyType({
     'bank_transactions': clean_bank_transactions,
     'general_ledger_details': clean_general_ledger_details,
+    'general_ledger_transactions': clean_general_ledger_transactions,
 })
