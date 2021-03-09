@@ -1,0 +1,131 @@
+{
+	"selected": true,
+	"type": [
+		"null",
+		"object"
+	],
+	"additionalProperties": false,
+	"properties": {
+		"id": {
+			"type": "number",
+			"format": "integer"
+		},
+        "office": {
+			"type": "string"
+		},
+		"office_name": {
+			"type": "string"
+		},
+        "year": {
+			"type": "number",
+			"format": "integer"
+		},
+		"period": {
+			"type": "number",
+			"format": "integer"
+		},
+        "journal": {
+			"type": "string"
+		},
+		"journal_name": {
+			"type": "string"
+		},
+        "booking_number": {
+			"type": "number",
+			"format": "integer"
+		},
+		"booking_status": {
+			"type": "string"
+		},
+        "booking_date": {
+			"type": "string",
+            "format": "date-time"
+		},
+        "expire_date": {
+			"type": [
+                "null",
+                "string"
+            ],
+            "format": "date-time"
+		},
+        "invoice_number": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+        "curcode": {
+			"type": "string"
+		},
+        "ledger": {
+			"type": "number",
+			"format": "integer"
+		},
+		"ledger_name": {
+			"type": "string"
+		},
+        "cost_centre": {
+			"type": "number",
+            "format": "integer"
+		},
+		"cost_centre_name": {
+			"type": "string"
+		},
+        "valuesigned": {
+			"type": "number"
+		},
+		"base_valuesigned": {
+			"type": "number"
+		},
+		"report_valuesigned": {
+			"type": [
+				"null",
+				"number"
+			]
+		},
+        "open_valuesigned": {
+			"type": "number"
+		},
+        "openbase_valuesigned": {
+			"type": "number"
+		},
+        "payment_status": {
+			"type": "string"
+		},
+        "payment_date": {
+			"type": "string",
+            "format": "date-time"
+		},
+        "affiliation_number": {
+			"type": "number"
+		},
+        "payment_number": {
+			"type": [
+                "string",
+                "null"
+            ] 
+		},
+        "modification_date": {
+			"type": "string",
+            "format": "date-time"
+		},
+        "freetext1": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"freetext2": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"freetext3": {
+			"type": [
+				"null",
+				"string"
+			]
+		}
+    }
+}

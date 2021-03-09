@@ -770,5 +770,102 @@ STREAMS: MappingProxyType = MappingProxyType({
                 'map': 'group5_name', 'null': True,
             }
         },
+    'suppliers': {
+        'key_properties': 'id',
+        'replication_method': 'INCREMENTAL',
+        'replication_key': 'id',
+        'bookmark': 'start_date',
+        'mapping': {
+            'id': {
+                'map': 'id', 'null': False,
+            },
+            'Administratie': {
+                'map': 'office', 'null': False,
+            },
+            'Adm.naam': {
+                'map': 'office_name', 'null': False,
+            },
+            'Jaar': {
+                'map': 'year', 'type': int, 'null': False,
+            },
+            'Periode': {
+                'map': 'period', 'type': int, 'null': False,
+            },
+            'Dagboek': {
+                'map': 'journal', 'null': False,
+            },
+            'Dagboeknaam': {
+                'map': 'journal_name', 'null': False,
+            },
+            'Boekingsnummer': {
+                'map': 'booking_number', 'type': int, 'null': False,
+            },
+            'Status': {
+                'map': 'status', 'null': False,
+            },
+            'Boekdatum': {
+                'map': 'booking_date', 'type': date_parser, 'null': False,
+            },
+            'Vervaldatum': {
+                'map': 'expire_date', 'type': date_parser, 'null': True,
+            },
+            'Factuurnummer': {
+                'map': 'invoice_number', 'null': True,
+            },
+            'Valuta': {
+                'map': 'curcode', 'null': False,
+            },
+            'Grootboekrek.': {
+                'map': 'ledger', 'type': int, 'null': False,
+            },
+            'Grootboekrek.naam': {
+                'map': 'ledger_name', 'null': False,
+            },
+            'Kpl./rel.': {
+                'map': 'cost_centre', 'type': int, 'null': False,
+            },
+            'Kpl.-/rel.naam': {
+                'map': 'cost_centre_name', 'null': False,
+            },
+            'Bedrag': {
+                'map': 'valuesigned', 'type': Decimal, 'null': False,
+            },
+            'Basisbedrag': {
+                'map': 'base_valuesigned', 'type': Decimal, 'null': False,
+            },
+            'Rapportagebedrag': {
+                'map': 'report_valuesigned', 'type': Decimal, 'null': True,
+            },
+            'Open amount transaction value': {
+                'map': 'open_valuesigned', 'type': Decimal, 'null': True,
+            },
+            'Open amount base value': {
+                'map': 'openbase_valuesigned', 'type': Decimal, 'null': True,
+            },
+            'Betaalstatus': {
+                'map': 'status', 'null': False,
+            },
+            'Betaaldatum': {
+                'map': 'payment_date', 'type': date_parser, 'null': False,
+            },
+            'Afletternummer': {
+                'map': 'affiliation_number', 'type': int, 'null': False,
+            },
+            'Betaalnummer': {
+                'map': 'payment_number', 'null': True,
+            },
+            'Wijzigingsdatum': {
+                'map': 'modification_date', 'type': date_parser, 'null': False,
+            },
+            'Vrij tekstveld 1': {
+                'map': 'freetext1', 'null': True,
+            },
+            'Vrij tekstveld 2': {
+                'map': 'freetext2', 'null': True,
+            },
+            'Vrij tekstveld 3': {
+                'map': 'freetext3', 'null': True,
+            },
+        },
     },
 })
