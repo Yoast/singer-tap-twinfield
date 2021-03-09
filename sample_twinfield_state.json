@@ -1,0 +1,31 @@
+{
+  "bookmarks": {
+    "annual_report_multicurrency": {
+      "start_date": "2020-01"
+    },
+    "annual_report": {
+      "start_date": "2020-01"
+    },
+    "bank_transactions": {
+      "start_date": "2020-01"
+    },
+    "general_ledger_details": {
+      "start_date": "2020-01"
+    },
+    "general_ledger_transactions": {
+      "start_date": "2020-01"
+    },
+    "suppliers": {
+      "start_date": "2020-01"
+    },
+    "transaction_list": {
+      "start_date": "2020-01"
+    },
+    "transaction_summary": {
+      "start_date": "2020-01"
+    },
+    "transactions_to_be_matched": {
+      "start_date": "2020-01"
+    }
+  }
+}
