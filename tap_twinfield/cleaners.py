@@ -166,7 +166,108 @@ def clean_general_ledger_transactions(
         dict -- Cleaned row
     """
     # Get the mapping from the STREAMS
-    mapping: Optional[dict] = STREAMS['bank_transactions'].get('mapping')
+    mapping: Optional[dict] = STREAMS['general_ledger_transactions'].get(
+        'mapping',
+    )
+
+    # Create primary key
+    number: str = str(row_number).rjust(10, '0')
+
+    period: str = row['Periode']
+    period = period.replace('/', '')
+    row['id'] = int(period + number)
+
+    # If a mapping has been defined in STREAMS, apply it
+    if mapping:
+        return clean_row(row, mapping)
+
+    # Else return the original row
+    return row
+
+
+def clean_transactions_to_be_matched(
+    row: dict,
+    row_number: int,
+) -> dict:
+    """Clean transactions to be matched.
+
+    Arguments:
+        row {dict} -- Input row
+        row_number {int} -- Row number, used to construct primary key
+
+    Returns:
+        dict -- Cleaned row
+    """
+    # Get the mapping from the STREAMS
+    mapping: Optional[dict] = STREAMS['transactions_to_be_matched'].get(
+        'mapping',
+    )
+
+    # Create primary key
+    number: str = str(row_number).rjust(10, '0')
+
+    period: str = row['Periode']
+    period = period.replace('/', '')
+    row['id'] = int(period + number)
+
+    # If a mapping has been defined in STREAMS, apply it
+    if mapping:
+        return clean_row(row, mapping)
+
+    # Else return the original row
+    return row
+
+
+def clean_annual_report(
+    row: dict,
+    row_number: int,
+) -> dict:
+    """Clean annual report.
+
+    Arguments:
+        row {dict} -- Input row
+        row_number {int} -- Row number, used to construct primary key
+
+    Returns:
+        dict -- Cleaned row
+    """
+    # Get the mapping from the STREAMS
+    mapping: Optional[dict] = STREAMS['annual_report'].get(
+        'mapping',
+    )
+
+    # Create primary key
+    number: str = str(row_number).rjust(10, '0')
+
+    period: str = row['Periode']
+    period = period.replace('/', '')
+    row['id'] = int(period + number)
+
+    # If a mapping has been defined in STREAMS, apply it
+    if mapping:
+        return clean_row(row, mapping)
+
+    # Else return the original row
+    return row
+
+
+def clean_annual_report_multicurrency(
+    row: dict,
+    row_number: int,
+) -> dict:
+    """Clean annual report multicurrency.
+
+    Arguments:
+        row {dict} -- Input row
+        row_number {int} -- Row number, used to construct primary key
+
+    Returns:
+        dict -- Cleaned row
+    """
+    # Get the mapping from the STREAMS
+    mapping: Optional[dict] = STREAMS['annual_report_multicurrency'].get(
+        'mapping',
+    )
 
     # Create primary key
     number: str = str(row_number).rjust(10, '0')
@@ -188,4 +289,7 @@ CLEANERS: MappingProxyType = MappingProxyType({
     'bank_transactions': clean_bank_transactions,
     'general_ledger_details': clean_general_ledger_details,
     'general_ledger_transactions': clean_general_ledger_transactions,
+    'transactions_to_be_matched': clean_transactions_to_be_matched,
+    'annual_report': clean_annual_report,
+    'annual_report_multicurrency': clean_annual_report_multicurrency,
 })
