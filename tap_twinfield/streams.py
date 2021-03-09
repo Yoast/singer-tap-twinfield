@@ -867,5 +867,29 @@ STREAMS: MappingProxyType = MappingProxyType({
                 'map': 'freetext3', 'null': True,
             },
         },
+    'suppliers': {
+        'key_properties': 'id',
+        'replication_method': 'INCREMENTAL',
+        'replication_key': 'id',
+        'bookmark': 'start_date',
+        'mapping': {
+            'id': {
+                'map': 'id', 'null': False,
+            },
+            'Administratie': {
+                'map': 'office', 'null': False,
+            },
+            'Adm.naam': {
+                'map': 'office_name', 'null': False,
+            },
+            'Dagboek': {
+                'map': 'journal', 'null': False,
+            },
+            'Aantal transacties': {
+                'map': 'transaction_count', 'type': int, 'null': False,
+            },
+            'Aantal transactie regels': {
+                'map': 'transaction_line_count', 'type': int, 'null': False,
+            },
     },
 })

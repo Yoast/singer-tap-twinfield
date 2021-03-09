@@ -1,0 +1,34 @@
+{
+	"selected": true,
+	"type": [
+		"null",
+		"object"
+	],
+	"additionalProperties": false,
+	"properties": {
+		"id": {
+			"type": "number",
+			"format": "integer"
+		},
+        "office": {
+			"type": "string"
+		},
+		"office_name": {
+			"type": "string"
+		},
+        "journal": {
+			"type": "string"
+		},
+		"yearperiod": {
+			"type":	"string"
+		},
+        "transaction_count": {
+            "type": "number",
+            "format": "integer"
+        },
+        "transaction_line_count": {
+            "type": "number",
+            "format": "integer"
+        }
+    }
+}
