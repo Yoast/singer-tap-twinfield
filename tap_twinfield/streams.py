@@ -603,5 +603,93 @@ STREAMS: MappingProxyType = MappingProxyType({
                 'map': 'type', 'null': False,
             },
         },
+    'annual_report': {
+        'key_properties': 'id',
+        'replication_method': 'INCREMENTAL',
+        'replication_key': 'id',
+        'bookmark': 'start_date',
+        'mapping': {
+            'id': {
+                'map': 'id', 'null': False,
+            },
+            'Administratie': {
+                'map': 'office', 'null': False,
+            },
+            'Adm.naam': {
+                'map': 'office_name', 'null': False,
+            },
+            'Jaar': {
+                'map': 'year', 'type': int, 'null': False,
+            },
+            'Periode': {
+                'map': 'period', 'type': int, 'null': False,
+            },
+            'Grootboekrek.': {
+                'map': 'ledger', 'type': int, 'null': False,
+            },
+            'Grootboekrek.naam': {
+                'map': 'ledger_name', 'null': False,
+            },
+            'Dimensietype 1': {
+                'map': 'ledger_type', 'null': False,
+            },
+            'Kpl./rel.': {
+                'map': 'cost_centre', 'null': True,
+            },
+            'Kpl.-/rel.naam': {
+                'map': 'cost_centre_name', 'null': True,
+            },
+            'Act./proj.': {
+                'map': 'project', 'null': True,
+            },
+            'Act.-/proj.naam': {
+                'map': 'project_name', 'null': True,
+            },
+            'Dimensietype 3': {
+                'map': 'project_type', 'null': True,
+            },
+            'Basisbedrag': {
+                'map': 'base_valuesigned', 'type': Decimal, 'null': False,
+            },
+            'Rapportagebedrag': {
+                'map': 'report_valuesigned', 'type': Decimal, 'null': True,
+            },
+            'D/C': {
+                'map': 'debitcredit', 'null': False,
+            },
+            'Aantal': {
+                'map': 'quantity', 'type': int, 'null': True,
+            },
+            'Groep 1': {
+                'map': 'group1', 'null': False,
+            },
+            'Groepnaam 1': {
+                'map': 'group1_name', 'null': False,
+            },
+            'Groep 2': {
+                'map': 'group2', 'null': False,
+            },
+            'Groepnaam 2': {
+                'map': 'group2_name', 'null': False,
+            },
+            'Groep 3': {
+                'map': 'group3', 'null': True,
+            },
+            'Groepnaam 3': {
+                'map': 'group3_name', 'null': True,
+            },
+            'Groep 4': {
+                'map': 'group4', 'null': True,
+            },
+            'Groepnaam 4': {
+                'map': 'group4_name', 'null': True,
+            },
+            'Groep 5': {
+                'map': 'group5', 'null': True,
+            },
+            'Groepnaam 5': {
+                'map': 'group5_name', 'null': True,
+            }
+        },
     },
 })

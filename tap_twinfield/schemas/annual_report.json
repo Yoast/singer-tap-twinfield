@@ -1,0 +1,153 @@
+{
+	"selected": true,
+	"type": [
+		"null",
+		"object"
+	],
+	"additionalProperties": false,
+	"properties": {
+		"id": {
+			"type": "number",
+			"format": "integer"
+		},
+        "office": {
+			"type": "string"
+		},
+		"office_name": {
+			"type": "string"
+		},
+        "year": {
+			"type": "number",
+			"format": "integer"
+		},
+		"period": {
+			"type": "number",
+			"format": "integer"
+		},
+        "ledger": {
+			"type": "number",
+			"format": "integer"
+		},
+		"ledger_name": {
+			"type": "string"
+		},
+		"ledger_type": {
+			"type": "string"
+		},
+        "cost_centre": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"cost_centre_name": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"cost_centre_type": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+        "project": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"project_name": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"project_type": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"base_valuesigned": {
+			"type": "number"
+		},
+		"report_valuesigned": {
+			"type": [
+				"null",
+				"number"
+			]
+		},
+		"debitcredit": {
+			"type": "string"
+		},
+        "quantity": {
+			"type": [
+				"null",
+				"number"
+			],
+			"format": "integer"
+		},
+        "group1": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"group1_name": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"group2": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"group2_name": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"group3": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"group3_name": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"group4": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"group4_name": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"group5": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"group5_name": {
+			"type": [
+				"null",
+				"string"
+			]
+		}
+    }
+}
