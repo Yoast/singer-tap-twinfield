@@ -364,6 +364,50 @@ STREAMS: MappingProxyType = MappingProxyType({
             }
         },
     },
+    'general_ledger_transactions': {
+        'key_properties': 'id',
+        'replication_method': 'INCREMENTAL',
+        'replication_key': 'id',
+        'bookmark': 'start_date',
+        'mapping': {
+            'id': {
+                'map': 'id', 'type': int, 'null': False,
+            },
+            'Periode': {
+                'map': 'yearperiod', 'null': False,
+            },
+            'Dagboek': {
+                'map': 'journal', 'null': False,
+            },
+            'Naam': {
+                'map': 'journal_name', 'null': False,
+            },
+            'Boekst.nr.': {
+                'map': 'booking_number', 'type': int, 'null': False,
+            },
+            'Status.': {
+                'map': 'booking_status', 'null': False,
+            },
+            'Grootboek': {
+                'map': 'ledger', 'type': int, 'null': False,
+            },
+            'Valuta': {
+                'map': 'curcode', 'null': False,
+            },
+            'Bedrag': {
+                'map': 'valuesigned', 'type': Decimal, 'null': False,
+            },
+            'Euro': {
+                'map': 'base_valuesigned', 'type': Decimal, 'null': False,
+            },
+            'Omschrijving.': {
+                'map': 'description', 'null': True,
+            },
+            'Regime.': {
+                'map': 'regime', 'null': True,
+            }
+        },
+    },
     'general_ledger_details': {
         'key_properties': 'id',
         'replication_method': 'INCREMENTAL',
