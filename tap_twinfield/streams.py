@@ -603,6 +603,7 @@ STREAMS: MappingProxyType = MappingProxyType({
                 'map': 'type', 'null': False,
             },
         },
+    },
     'annual_report': {
         'key_properties': 'id',
         'replication_method': 'INCREMENTAL',
@@ -691,6 +692,7 @@ STREAMS: MappingProxyType = MappingProxyType({
                 'map': 'group5_name', 'null': True,
             }
         },
+    },
     'annual_report_multicurrency': {
         'key_properties': 'id',
         'replication_method': 'INCREMENTAL',
@@ -770,6 +772,7 @@ STREAMS: MappingProxyType = MappingProxyType({
                 'map': 'group5_name', 'null': True,
             }
         },
+    },
     'suppliers': {
         'key_properties': 'id',
         'replication_method': 'INCREMENTAL',
@@ -867,7 +870,8 @@ STREAMS: MappingProxyType = MappingProxyType({
                 'map': 'freetext3', 'null': True,
             },
         },
-    'suppliers': {
+    },
+    'transaction_summary': {
         'key_properties': 'id',
         'replication_method': 'INCREMENTAL',
         'replication_key': 'id',
@@ -891,5 +895,6 @@ STREAMS: MappingProxyType = MappingProxyType({
             'Aantal transactie regels': {
                 'map': 'transaction_line_count', 'type': int, 'null': False,
             },
+        },
     },
 })
