@@ -305,6 +305,65 @@ STREAMS: MappingProxyType = MappingProxyType({
             },
         },
     },
+    'transaction_list': {
+        'key_properties': 'id',
+        'replication_method': 'INCREMENTAL',
+        'replication_key': 'id',
+        'bookmark': 'start_date',
+        'mapping': {
+            'id': {
+                'map': 'id', 'type': int, 'null': False,
+            },
+            'Periode': {
+                'map': 'yearperiod', 'null': False,
+            },
+            'Dagboek': {
+                'map': 'journal', 'null': False,
+            },
+            'Naam': {
+                'map': 'journal_name', 'null': False,
+            },
+            'Boekst.nr.': {
+                'map': 'booking_number', 'type': int, 'null': False,
+            },
+            'Status.': {
+                'map': 'booking_status', 'null': False,
+            },
+            'Boekdatum': {
+                'map': 'booking_date', 'type': date_parser, 'null': False,
+            },
+            'Grootboek': {
+                'map': 'ledger', 'type': int, 'null': False,
+            },
+            'Relatie': {
+                'map': 'relation', 'null': True,
+            },
+            'Project': {
+                'map': 'project', 'null': True,
+            },
+            'Valuta': {
+                'map': 'curcode', 'null': False,
+            },
+            'Bedrag': {
+                'map': 'valuesigned', 'type': Decimal, 'null': False,
+            },
+            'Euro': {
+                'map': 'base_valuesigned', 'type': Decimal, 'null': False,
+            },
+            'Factuurnr.': {
+                'map': 'invoice_number', 'type': int, 'null': True,
+            },
+            'Invoerdatum.': {
+                'map': 'entry_date', 'type': date_parser, 'null': False,
+            },
+            'Omschrijving.': {
+                'map': 'description', 'null': True,
+            },
+            'Regime.': {
+                'map': 'regime', 'null': True,
+            }
+        },
+    },
     'general_ledger_details': {
         'key_properties': 'id',
         'replication_method': 'INCREMENTAL',

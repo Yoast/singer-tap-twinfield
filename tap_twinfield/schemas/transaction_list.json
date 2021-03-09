@@ -1,0 +1,82 @@
+{
+	"selected": true,
+	"type": [
+		"null",
+		"object"
+	],
+	"additionalProperties": false,
+	"properties": {
+		"id": {
+			"type": "number",
+			"format": "integer"
+		},
+		"yearperiod": {
+			"type": "string"
+		},
+		"journal": {
+			"type": "string"
+		},
+		"journal_name": {
+			"type": "string"
+		},
+		"booking_number": {
+			"type": "number",
+			"format": "integer"
+		},
+		"booking_status": {
+			"type": "string"
+		},
+		"booking_date": {
+			"type": "string",
+            "format": "date-time"
+		},
+		"ledger": {
+			"type": "number",
+			"format": "integer"
+		},
+		"relation": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"project": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"curcode": {
+			"type": "string"
+		},
+		"valuesigned": {
+			"type": "number"
+		},
+		"base_valuesigned": {
+			"type": "number"
+		},
+		"invoice_number": {
+			"type": [
+				"null",
+				"number"
+			],
+            "format": "integer"
+		},
+		"entry_date": {
+			"type": "string",
+            "format": "date-time"
+		},
+		"description": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"regime": {
+			"type": [
+				"null",
+				"string"
+			]
+		}
+    }
+}
