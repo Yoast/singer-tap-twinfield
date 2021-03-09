@@ -408,6 +408,50 @@ STREAMS: MappingProxyType = MappingProxyType({
             }
         },
     },
+    'transactions_to_be_matched': {
+        'key_properties': 'id',
+        'replication_method': 'INCREMENTAL',
+        'replication_key': 'id',
+        'bookmark': 'start_date',
+        'mapping': {
+            'id': {
+                'map': 'id', 'type': int, 'null': False,
+            },
+            'Periode': {
+                'map': 'yearperiod', 'null': False,
+            },
+            'Grootboek': {
+                'map': 'ledger', 'type': int, 'null': False,
+            },
+            'Naam': {
+                'map': 'ledger_name', 'null': False,
+            },
+            'Dagboek': {
+                'map': 'journal', 'type': int, 'null': False,
+            },
+            'Boekst.nr.': {
+                'map': 'booking_number', 'type': int, 'null': False,
+            },
+            'Valuta': {
+                'map': 'curcode', 'null': False,
+            },
+            'Bedrag': {
+                'map': 'valuesigned', 'type': Decimal, 'null': False,
+            },
+            'Euro': {
+                'map': 'base_valuesigned', 'type': Decimal, 'null': False,
+            },
+            'Openstaand bedrag.': {
+                'map': 'openbase_valuesigned', 'type': Decimal, 'null': False,
+            },
+            'Betaalstatus': {
+                'map': 'payment_status', 'null': False,
+            },
+            'Regime.': {
+                'map': 'regime', 'null': True,
+            }
+        },
+    },
     'general_ledger_details': {
         'key_properties': 'id',
         'replication_method': 'INCREMENTAL',
