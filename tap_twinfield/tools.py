@@ -61,6 +61,7 @@ def get_bookmark_value(
         'general_ledger_details',
         'annual_report',
         'multicurrency',
+        'suppliers',
     }:
         # YYYY-MM
 
