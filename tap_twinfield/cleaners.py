@@ -338,7 +338,41 @@ def clean_transaction_summary(
     # Create primary key
     number: str = str(row_number).rjust(10, '0')
 
-    row['id'] = int(number)
+    period: str = row['Jaar/periode (JJJJ/PP)']
+    period = period.replace('/', '')
+    row['id'] = int(period + number)
+
+    # If a mapping has been defined in STREAMS, apply it
+    if mapping:
+        return clean_row(row, mapping)
+
+    # Else return the original row
+    return row
+
+def clean_transaction_list(
+    row: dict,
+    row_number: int,
+) -> dict:
+    """Clean transaction_list.
+
+    Arguments:
+        row {dict} -- Input row
+        row_number {int} -- Row number, used to construct primary key
+
+    Returns:
+        dict -- Cleaned row
+    """
+    # Get the mapping from the STREAMS
+    mapping: Optional[dict] = STREAMS['transaction_list'].get(
+        'mapping',
+    )
+
+    # Create primary key
+    number: str = str(row_number).rjust(10, '0')
+
+    period: str = row['Periode']
+    period = period.replace('/', '')
+    row['id'] = int(period + number)
 
     # If a mapping has been defined in STREAMS, apply it
     if mapping:
@@ -358,4 +392,5 @@ CLEANERS: MappingProxyType = MappingProxyType({
     'annual_report_multicurrency': clean_annual_report_multicurrency,
     'suppliers': clean_suppliers,
     'transaction_summary': clean_transaction_summary,
+    'transaction_list': clean_transaction_list,
 })
