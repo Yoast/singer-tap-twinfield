@@ -298,7 +298,7 @@ def clean_suppliers(
         dict -- Cleaned row
     """
     # Get the mapping from the STREAMS
-    mapping: Optional[dict] = STREAMS['annual_report_multicurrency'].get(
+    mapping: Optional[dict] = STREAMS['suppliers'].get(
         'mapping',
     )
 
