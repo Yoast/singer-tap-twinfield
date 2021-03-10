@@ -326,7 +326,7 @@ STREAMS: MappingProxyType = MappingProxyType({
             'Boekst.nr.': {
                 'map': 'booking_number', 'type': int, 'null': False,
             },
-            'Status.': {
+            'Status': {
                 'map': 'booking_status', 'null': False,
             },
             'Boekdatum': {
@@ -351,15 +351,15 @@ STREAMS: MappingProxyType = MappingProxyType({
                 'map': 'base_valuesigned', 'type': Decimal, 'null': False,
             },
             'Factuurnr.': {
-                'map': 'invoice_number', 'type': int, 'null': True,
+                'map': 'invoice_number', 'null': True,
             },
-            'Invoerdatum.': {
+            'Invoerdatum': {
                 'map': 'entry_date', 'type': date_parser, 'null': False,
             },
-            'Omschrijving.': {
+            'Omschrijving': {
                 'map': 'description', 'null': True,
             },
-            'Regime.': {
+            'Regime': {
                 'map': 'regime', 'null': True,
             }
         },
@@ -385,7 +385,7 @@ STREAMS: MappingProxyType = MappingProxyType({
             'Boekst.nr.': {
                 'map': 'booking_number', 'type': int, 'null': False,
             },
-            'Status.': {
+            'Status': {
                 'map': 'booking_status', 'null': False,
             },
             'Grootboek': {
@@ -400,10 +400,10 @@ STREAMS: MappingProxyType = MappingProxyType({
             'Euro': {
                 'map': 'base_valuesigned', 'type': Decimal, 'null': False,
             },
-            'Omschrijving.': {
+            'Omschrijving': {
                 'map': 'description', 'null': True,
             },
-            'Regime.': {
+            'Regime': {
                 'map': 'regime', 'null': True,
             }
         },
@@ -427,7 +427,7 @@ STREAMS: MappingProxyType = MappingProxyType({
                 'map': 'ledger_name', 'null': False,
             },
             'Dagboek': {
-                'map': 'journal', 'type': int, 'null': False,
+                'map': 'journal', 'null': False,
             },
             'Boekst.nr.': {
                 'map': 'booking_number', 'type': int, 'null': False,
@@ -441,13 +441,13 @@ STREAMS: MappingProxyType = MappingProxyType({
             'Euro': {
                 'map': 'base_valuesigned', 'type': Decimal, 'null': False,
             },
-            'Openstaand bedrag.': {
+            'Openstaand bedrag': {
                 'map': 'openbase_valuesigned', 'type': Decimal, 'null': False,
             },
             'Betaalstatus': {
                 'map': 'payment_status', 'null': False,
             },
-            'Regime.': {
+            'Regime': {
                 'map': 'regime', 'null': True,
             }
         },
@@ -804,7 +804,7 @@ STREAMS: MappingProxyType = MappingProxyType({
                 'map': 'booking_number', 'type': int, 'null': False,
             },
             'Status': {
-                'map': 'status', 'null': False,
+                'map': 'booking_status', 'null': False,
             },
             'Boekdatum': {
                 'map': 'booking_date', 'type': date_parser, 'null': False,
@@ -846,7 +846,7 @@ STREAMS: MappingProxyType = MappingProxyType({
                 'map': 'openbase_valuesigned', 'type': Decimal, 'null': True,
             },
             'Betaalstatus': {
-                'map': 'status', 'null': False,
+                'map': 'payment_status', 'null': False,
             },
             'Betaaldatum': {
                 'map': 'payment_date', 'type': date_parser, 'null': False,
@@ -889,7 +889,7 @@ STREAMS: MappingProxyType = MappingProxyType({
             'Dagboek': {
                 'map': 'journal', 'null': False,
             },
-            'Periode': {
+            'Jaar/periode (JJJJ/PP)': {
                 'map': 'yearperiod', 'null': False,
             },
             'Aantal transacties': {
