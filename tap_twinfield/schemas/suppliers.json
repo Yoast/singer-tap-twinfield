@@ -93,16 +93,22 @@
 			"type": "string"
 		},
         "payment_date": {
-			"type": "string",
+			"type": [
+				"null",
+				"string"
+			],
             "format": "date-time"
 		},
         "affiliation_number": {
-			"type": "number"
+			"type": [
+				"null",
+				"number"
+			]
 		},
         "payment_number": {
 			"type": [
-                "string",
-                "null"
+                "null",
+                "string"
             ] 
 		},
         "modification_date": {
