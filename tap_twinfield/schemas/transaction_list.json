@@ -58,9 +58,8 @@
 		"invoice_number": {
 			"type": [
 				"null",
-				"number"
-			],
-            "format": "integer"
+				"string"
+			]
 		},
 		"entry_date": {
 			"type": "string",
