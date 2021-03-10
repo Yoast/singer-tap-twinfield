@@ -889,6 +889,9 @@ STREAMS: MappingProxyType = MappingProxyType({
             'Dagboek': {
                 'map': 'journal', 'null': False,
             },
+            'Periode': {
+                'map': 'yearperiod', 'null': False,
+            },
             'Aantal transacties': {
                 'map': 'transaction_count', 'type': int, 'null': False,
             },
