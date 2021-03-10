@@ -21,8 +21,7 @@
 			"type": "string"
 		},
         "journal": {
-			"type": "number",
-			"format": "integer"
+			"type": "string"
 		},
 		"booking_number": {
 			"type": "number",
