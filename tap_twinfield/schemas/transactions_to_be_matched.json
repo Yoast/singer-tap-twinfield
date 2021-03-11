@@ -1,0 +1,52 @@
+{
+	"selected": true,
+	"type": [
+		"null",
+		"object"
+	],
+	"additionalProperties": false,
+	"properties": {
+		"id": {
+			"type": "number",
+			"format": "integer"
+		},
+        "yearperiod": {
+			"type": "string"
+		},
+        "ledger": {
+			"type": "number",
+			"format": "integer"
+		},
+		"ledger_name": {
+			"type": "string"
+		},
+        "journal": {
+			"type": "string"
+		},
+		"booking_number": {
+			"type": "number",
+			"format": "integer"
+		},
+        "curcode": {
+			"type": "string"
+		},
+		"valuesigned": {
+			"type": "number"
+		},
+		"base_valuesigned": {
+			"type": "number"
+		},
+		"openbase_valuesigned": {
+			"type": "number"
+		},
+		"payment_status": {
+			"type": "string"
+		},
+		"regime": {
+			"type": [
+				"null",
+				"string"
+			]
+		}
+    }
+}

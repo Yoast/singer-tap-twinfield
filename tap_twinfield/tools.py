@@ -49,11 +49,20 @@ def get_bookmark_value(
     Returns:
         str -- Bookmark value
     """
-    if stream_name == 'bank_transactions':
+    if stream_name in {
+        'bank_transactions',
+        'general_ledger_transactions',
+        'transactions_to_be_matched',
+    }:
         # YYYY-MM
         return row['yearperiod'].replace('/', '-')
 
-    elif stream_name == 'general_ledger_details':
+    elif stream_name in {
+        'general_ledger_details',
+        'annual_report',
+        'multicurrency',
+        'suppliers',
+    }:
         # YYYY-MM
 
         year: str = str(row['year'])

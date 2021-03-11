@@ -8,8 +8,15 @@ This tap:
 
 - Pulls raw data from [Twinfield](https://accounting2.twinfield.com/webservices/documentation/#/ApiReference/Request/BrowseData)
 - Extracts the following resources:
-  - 410 - Bank Transactions
+  - 000 - General Ledger Transactions
+  - 010 - Transactions still to be matched
+  - 020 - Transaction List
   - 030_3 - General Ledger Details
+  - 040_1 - Annual Report (Totals)
+  - 060 - Annual Report (Totals Multicurrency)
+  - 230_2 - Suppliers (v2)
+  - 410 - Bank Transactions
+  - 670 - Transaction Summary
 - Outputs the schema for each resource
 - Incrementally pulls data based on the input state
 

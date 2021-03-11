@@ -152,8 +152,245 @@ def clean_general_ledger_details(
     return row
 
 
+def clean_general_ledger_transactions(
+    row: dict,
+    row_number: int,
+) -> dict:
+    """Clean general ledger transactions.
+
+    Arguments:
+        row {dict} -- Input row
+        row_number {int} -- Row number, used to construct primary key
+
+    Returns:
+        dict -- Cleaned row
+    """
+    # Get the mapping from the STREAMS
+    mapping: Optional[dict] = STREAMS['general_ledger_transactions'].get(
+        'mapping',
+    )
+
+    # Create primary key
+    number: str = str(row_number).rjust(10, '0')
+
+    period: str = row['Periode']
+    period = period.replace('/', '')
+    row['id'] = int(period + number)
+
+    # If a mapping has been defined in STREAMS, apply it
+    if mapping:
+        return clean_row(row, mapping)
+
+    # Else return the original row
+    return row
+
+
+def clean_transactions_to_be_matched(
+    row: dict,
+    row_number: int,
+) -> dict:
+    """Clean transactions to be matched.
+
+    Arguments:
+        row {dict} -- Input row
+        row_number {int} -- Row number, used to construct primary key
+
+    Returns:
+        dict -- Cleaned row
+    """
+    # Get the mapping from the STREAMS
+    mapping: Optional[dict] = STREAMS['transactions_to_be_matched'].get(
+        'mapping',
+    )
+
+    # Create primary key
+    number: str = str(row_number).rjust(10, '0')
+
+    period: str = row['Periode']
+    period = period.replace('/', '')
+    row['id'] = int(period + number)
+
+    # If a mapping has been defined in STREAMS, apply it
+    if mapping:
+        return clean_row(row, mapping)
+
+    # Else return the original row
+    return row
+
+
+def clean_annual_report(
+    row: dict,
+    row_number: int,
+) -> dict:
+    """Clean annual report.
+
+    Arguments:
+        row {dict} -- Input row
+        row_number {int} -- Row number, used to construct primary key
+
+    Returns:
+        dict -- Cleaned row
+    """
+    # Get the mapping from the STREAMS
+    mapping: Optional[dict] = STREAMS['annual_report'].get(
+        'mapping',
+    )
+
+    # Create primary key
+    number: str = str(row_number).rjust(10, '0')
+
+    period: str = row['Periode']
+    period = period.replace('/', '')
+    row['id'] = int(period + number)
+
+    # If a mapping has been defined in STREAMS, apply it
+    if mapping:
+        return clean_row(row, mapping)
+
+    # Else return the original row
+    return row
+
+
+def clean_annual_report_multicurrency(
+    row: dict,
+    row_number: int,
+) -> dict:
+    """Clean annual report multicurrency.
+
+    Arguments:
+        row {dict} -- Input row
+        row_number {int} -- Row number, used to construct primary key
+
+    Returns:
+        dict -- Cleaned row
+    """
+    # Get the mapping from the STREAMS
+    mapping: Optional[dict] = STREAMS['annual_report_multicurrency'].get(
+        'mapping',
+    )
+
+    # Create primary key
+    number: str = str(row_number).rjust(10, '0')
+
+    period: str = row['Periode']
+    period = period.replace('/', '')
+    row['id'] = int(period + number)
+
+    # If a mapping has been defined in STREAMS, apply it
+    if mapping:
+        return clean_row(row, mapping)
+
+    # Else return the original row
+    return row
+
+
+def clean_suppliers(
+    row: dict,
+    row_number: int,
+) -> dict:
+    """Clean annual report multicurrency.
+
+    Arguments:
+        row {dict} -- Input row
+        row_number {int} -- Row number, used to construct primary key
+
+    Returns:
+        dict -- Cleaned row
+    """
+    # Get the mapping from the STREAMS
+    mapping: Optional[dict] = STREAMS['suppliers'].get(
+        'mapping',
+    )
+
+    # Create primary key
+    number: str = str(row_number).rjust(10, '0')
+
+    period: str = row['Periode']
+    period = period.replace('/', '')
+    row['id'] = int(period + number)
+
+    # If a mapping has been defined in STREAMS, apply it
+    if mapping:
+        return clean_row(row, mapping)
+
+    # Else return the original row
+    return row
+
+
+def clean_transaction_summary(
+    row: dict,
+    row_number: int,
+) -> dict:
+    """Clean transaction_summary.
+
+    Arguments:
+        row {dict} -- Input row
+        row_number {int} -- Row number, used to construct primary key
+
+    Returns:
+        dict -- Cleaned row
+    """
+    # Get the mapping from the STREAMS
+    mapping: Optional[dict] = STREAMS['transaction_summary'].get(
+        'mapping',
+    )
+
+    # Create primary key
+    number: str = str(row_number).rjust(10, '0')
+
+    period: str = row['Jaar/periode (JJJJ/PP)']
+    period = period.replace('/', '')
+    row['id'] = int(period + number)
+
+    # If a mapping has been defined in STREAMS, apply it
+    if mapping:
+        return clean_row(row, mapping)
+
+    # Else return the original row
+    return row
+
+def clean_transaction_list(
+    row: dict,
+    row_number: int,
+) -> dict:
+    """Clean transaction_list.
+
+    Arguments:
+        row {dict} -- Input row
+        row_number {int} -- Row number, used to construct primary key
+
+    Returns:
+        dict -- Cleaned row
+    """
+    # Get the mapping from the STREAMS
+    mapping: Optional[dict] = STREAMS['transaction_list'].get(
+        'mapping',
+    )
+
+    # Create primary key
+    number: str = str(row_number).rjust(10, '0')
+
+    period: str = row['Periode']
+    period = period.replace('/', '')
+    row['id'] = int(period + number)
+
+    # If a mapping has been defined in STREAMS, apply it
+    if mapping:
+        return clean_row(row, mapping)
+
+    # Else return the original row
+    return row
+
+
 # Collect all cleaners
 CLEANERS: MappingProxyType = MappingProxyType({
     'bank_transactions': clean_bank_transactions,
     'general_ledger_details': clean_general_ledger_details,
+    'general_ledger_transactions': clean_general_ledger_transactions,
+    'transactions_to_be_matched': clean_transactions_to_be_matched,
+    'annual_report': clean_annual_report,
+    'annual_report_multicurrency': clean_annual_report_multicurrency,
+    'suppliers': clean_suppliers,
+    'transaction_summary': clean_transaction_summary,
+    'transaction_list': clean_transaction_list,
 })

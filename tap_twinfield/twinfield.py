@@ -201,6 +201,94 @@ class Twinfield(object):  # noqa: WPS214, WPS230
 
         return out
 
+    def annual_report_multicurrency(  # noqa: WPS210
+        self,
+        start_date: str,
+    ) -> Generator[dict, None, None]:
+        """Retrieve annual multicurrency report (code: 060).
+
+        Arguments:
+            start_date {str} -- Start date e.g. 2021-01
+
+        Returns:
+            Generator[dict, None, None] -- Annual Report (Multicurrency)
+        """
+        # Retrieve cleaner
+        cleaner: Callable = CLEANERS.get('annual_report_multicurrency', {})
+
+        # For every month from start_date until now
+        for date_month in self._start_month_till_now(start_date):
+
+            # Retrieve query
+            query: str = QUERIES['060']
+
+            # Replace dates in placeholders
+            query = query.replace(':period_lower:', date_month)
+            query = query.replace(':period_upper:', date_month)
+
+            # Perform query
+            self.logger.info(
+                'Extracting annual report multicurrency (060) for month '
+                f'{date_month}',
+            )
+            export: List[dict] = self.export_data(query)
+
+            record_count: int = len(export)
+            self.logger.info(
+                'Received annual report multicurrency (060) for month '
+                f'{date_month}: {record_count} records',
+            )
+
+            # Yield data after cleaning
+            yield from (
+                cleaner(row, number)
+                for number, row in enumerate(export)
+            )
+
+    def annual_report(  # noqa: WPS210
+        self,
+        start_date: str,
+    ) -> Generator[dict, None, None]:
+        """Retrieve annual report (code: 040_1).
+
+        Arguments:
+            start_date {str} -- Start date e.g. 2021-01
+
+        Returns:
+            Generator[dict, None, None] -- Annual Report
+        """
+        # Retrieve cleaner
+        cleaner: Callable = CLEANERS.get('annual_report', {})
+
+        # For every month from start_date until now
+        for date_month in self._start_month_till_now(start_date):
+
+            # Retrieve query
+            query: str = QUERIES['040_1']
+
+            # Replace dates in placeholders
+            query = query.replace(':period_lower:', date_month)
+            query = query.replace(':period_upper:', date_month)
+
+            # Perform query
+            self.logger.info(
+                'Extracting annual report (040_1) for month '
+                f'{date_month}',
+            )
+            export: List[dict] = self.export_data(query)
+
+            record_count: int = len(export)
+            self.logger.info(
+                'Received annual report (040_1) for month '
+                f'{date_month}: {record_count} records',
+            )
+
+            # Yield data after cleaning
+            yield from (
+                cleaner(row, number)
+                for number, row in enumerate(export)
+            )
+
     def bank_transactions(  # noqa: WPS210
         self,
         start_date: str,
@@ -255,7 +343,7 @@ class Twinfield(object):  # noqa: WPS214, WPS230
             start_date {str} -- Start date e.g. 2021-01
 
         Returns:
-            Generator[dict, None, None] -- Bank transactions
+            Generator[dict, None, None] -- General Ledger Details (v3)
         """
         # Retrieve cleaner
         cleaner: Callable = CLEANERS.get('general_ledger_details', {})
@@ -280,6 +368,226 @@ class Twinfield(object):  # noqa: WPS214, WPS230
             record_count: int = len(export)
             self.logger.info(
                 'Received general ledger details (030_3) for month '
+                f'{date_month}: {record_count} records',
+            )
+
+            # Yield data after cleaning
+            yield from (
+                cleaner(row, number)
+                for number, row in enumerate(export)
+            )
+
+    def general_ledger_transactions(  # noqa: WPS210
+        self,
+        start_date: str,
+    ) -> Generator[dict, None, None]:
+        """Retrieve general ledger transactions (code: 000).
+
+        Arguments:
+            start_date {str} -- Start date e.g. 2021-01
+
+        Returns:
+            Generator[dict, None, None] -- General Ledger Transactions
+        """
+        # Retrieve cleaner
+        cleaner: Callable = CLEANERS.get('general_ledger_transactions', {})
+
+        # For every month from start_date until now
+        for date_month in self._start_month_till_now(start_date):
+
+            # Retrieve query
+            query: str = QUERIES['000']
+
+            # Replace dates in placeholders
+            query = query.replace(':period_lower:', date_month)
+            query = query.replace(':period_upper:', date_month)
+
+            # Perform query
+            self.logger.info(
+                'Extracting general ledger transactions (000) for month '
+                f'{date_month}',
+            )
+            export: List[dict] = self.export_data(query)
+
+            record_count: int = len(export)
+            self.logger.info(
+                'Received general ledger transactions (000) for month '
+                f'{date_month}: {record_count} records',
+            )
+
+            # Yield data after cleaning
+            yield from (
+                cleaner(row, number)
+                for number, row in enumerate(export)
+            )
+
+    def suppliers(  # noqa: WPS210
+        self,
+        start_date: str,
+    ) -> Generator[dict, None, None]:
+        """Retrieve suppliers (code: 230_2).
+
+        Arguments:
+            start_date {str} -- Start date e.g. 2021-01
+
+        Returns:
+            Generator[dict, None, None] -- Supplier Invoices
+        """
+        # Retrieve cleaner
+        cleaner: Callable = CLEANERS.get('suppliers', {})
+
+        # For every month from start_date until now
+        for date_month in self._start_month_till_now(start_date):
+
+            # Retrieve query
+            query: str = QUERIES['230_2']
+
+            # Replace dates in placeholders
+            query = query.replace(':period_lower:', date_month)
+            query = query.replace(':period_upper:', date_month)
+
+            # Perform query
+            self.logger.info(
+                'Extracting suppliers (230_2) for month '
+                f'{date_month}',
+            )
+            export: List[dict] = self.export_data(query)
+
+            record_count: int = len(export)
+            self.logger.info(
+                'Received suppliers (230_2) for month '
+                f'{date_month}: {record_count} records',
+            )
+
+            # Yield data after cleaning
+            yield from (
+                cleaner(row, number)
+                for number, row in enumerate(export)
+            )
+
+    def transaction_list(  # noqa: WPS210
+        self,
+        start_date: str,
+    ) -> Generator[dict, None, None]:
+        """Retrieve transaction list (code: 020).
+
+        Arguments:
+            start_date {str} -- Start date e.g. 2021-01
+
+        Returns:
+            Generator[dict, None, None] -- Transaction list
+        """
+        # Retrieve cleaner
+        cleaner: Callable = CLEANERS.get('transaction_list', {})
+
+        # For every month from start_date until now
+        for date_month in self._start_month_till_now(start_date):
+
+            # Retrieve query
+            query: str = QUERIES['020']
+
+            # Replace dates in placeholders
+            query = query.replace(':period_lower:', date_month)
+            query = query.replace(':period_upper:', date_month)
+
+            # Perform query
+            self.logger.info(
+                'Extracting transaction list (020) for month '
+                f'{date_month}',
+            )
+            export: List[dict] = self.export_data(query)
+
+            record_count: int = len(export)
+            self.logger.info(
+                'Received transaction list (020) for month '
+                f'{date_month}: {record_count} records',
+            )
+
+            # Yield data after cleaning
+            yield from (
+                cleaner(row, number)
+                for number, row in enumerate(export)
+            )
+
+    def transaction_summary(  # noqa: WPS210
+        self,
+        start_date: str,
+    ) -> Generator[dict, None, None]:
+        """Retrieve transaction summary (code: 670).
+
+        Arguments:
+            start_date {str} -- Start date e.g. 2021-01
+
+        Returns:
+            Generator[dict, None, None] -- Transaction Summary
+        """
+        # Retrieve cleaner
+        cleaner: Callable = CLEANERS.get('transaction_summary', {})
+
+        # For every month from start_date until now
+        for date_month in self._start_month_till_now(start_date):
+
+            # Retrieve query
+            query: str = QUERIES['670']
+
+            # Replace dates in placeholders
+            query = query.replace(':period_lower:', date_month)
+            query = query.replace(':period_upper:', date_month)
+
+            # Perform query
+            self.logger.info(
+                'Extracting transaction summary (670) for month '
+                f'{date_month}',
+            )
+            export: List[dict] = self.export_data(query)
+
+            record_count: int = len(export)
+            self.logger.info(
+                'Received transaction summary (670) for month '
+                f'{date_month}: {record_count} records',
+            )
+
+            # Yield data after cleaning
+            yield from (
+                cleaner(row, number)
+                for number, row in enumerate(export)
+            )
+
+    def transactions_to_be_matched(  # noqa: WPS210
+        self,
+        start_date: str,
+    ) -> Generator[dict, None, None]:
+        """Retrieve transactions to be matched (code: 010).
+
+        Arguments:
+            start_date {str} -- Start date e.g. 2021-01
+
+        Returns:
+            Generator[dict, None, None] -- Transactions still to be matched
+        """
+        # Retrieve cleaner
+        cleaner: Callable = CLEANERS.get('transactions_to_be_matched', {})
+
+        # For every month from start_date until now
+        for date_month in self._start_month_till_now(start_date):
+
+            # Retrieve query
+            query: str = QUERIES['010']
+
+            # Replace dates in placeholders
+            query = query.replace(':period_lower:', date_month)
+            query = query.replace(':period_upper:', date_month)
+
+            # Perform query
+            self.logger.info(
+                'Extracting transactions to be matched (010) for month '
+                f'{date_month}',
+            )
+            export: List[dict] = self.export_data(query)
+
+            record_count: int = len(export)
+            self.logger.info(
+                'Received transactions to be matched (010) for month '
                 f'{date_month}: {record_count} records',
             )
 

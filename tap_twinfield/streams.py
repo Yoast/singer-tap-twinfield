@@ -305,6 +305,153 @@ STREAMS: MappingProxyType = MappingProxyType({
             },
         },
     },
+    'transaction_list': {
+        'key_properties': 'id',
+        'replication_method': 'INCREMENTAL',
+        'replication_key': 'id',
+        'bookmark': 'start_date',
+        'mapping': {
+            'id': {
+                'map': 'id', 'type': int, 'null': False,
+            },
+            'Periode': {
+                'map': 'yearperiod', 'null': False,
+            },
+            'Dagboek': {
+                'map': 'journal', 'null': False,
+            },
+            'Naam': {
+                'map': 'journal_name', 'null': False,
+            },
+            'Boekst.nr.': {
+                'map': 'booking_number', 'type': int, 'null': False,
+            },
+            'Status': {
+                'map': 'booking_status', 'null': False,
+            },
+            'Boekdatum': {
+                'map': 'booking_date', 'type': date_parser, 'null': False,
+            },
+            'Grootboek': {
+                'map': 'ledger', 'type': int, 'null': False,
+            },
+            'Relatie': {
+                'map': 'relation', 'null': True,
+            },
+            'Project': {
+                'map': 'project', 'null': True,
+            },
+            'Valuta': {
+                'map': 'curcode', 'null': False,
+            },
+            'Bedrag': {
+                'map': 'valuesigned', 'type': Decimal, 'null': False,
+            },
+            'Euro': {
+                'map': 'base_valuesigned', 'type': Decimal, 'null': False,
+            },
+            'Factuurnr.': {
+                'map': 'invoice_number', 'null': True,
+            },
+            'Invoerdatum': {
+                'map': 'entry_date', 'type': date_parser, 'null': False,
+            },
+            'Omschrijving': {
+                'map': 'description', 'null': True,
+            },
+            'Regime': {
+                'map': 'regime', 'null': True,
+            }
+        },
+    },
+    'general_ledger_transactions': {
+        'key_properties': 'id',
+        'replication_method': 'INCREMENTAL',
+        'replication_key': 'id',
+        'bookmark': 'start_date',
+        'mapping': {
+            'id': {
+                'map': 'id', 'type': int, 'null': False,
+            },
+            'Periode': {
+                'map': 'yearperiod', 'null': False,
+            },
+            'Dagboek': {
+                'map': 'journal', 'null': False,
+            },
+            'Naam': {
+                'map': 'journal_name', 'null': False,
+            },
+            'Boekst.nr.': {
+                'map': 'booking_number', 'type': int, 'null': False,
+            },
+            'Status': {
+                'map': 'booking_status', 'null': False,
+            },
+            'Grootboek': {
+                'map': 'ledger', 'type': int, 'null': False,
+            },
+            'Valuta': {
+                'map': 'curcode', 'null': False,
+            },
+            'Bedrag': {
+                'map': 'valuesigned', 'type': Decimal, 'null': False,
+            },
+            'Euro': {
+                'map': 'base_valuesigned', 'type': Decimal, 'null': False,
+            },
+            'Omschrijving': {
+                'map': 'description', 'null': True,
+            },
+            'Regime': {
+                'map': 'regime', 'null': True,
+            }
+        },
+    },
+    'transactions_to_be_matched': {
+        'key_properties': 'id',
+        'replication_method': 'INCREMENTAL',
+        'replication_key': 'id',
+        'bookmark': 'start_date',
+        'mapping': {
+            'id': {
+                'map': 'id', 'type': int, 'null': False,
+            },
+            'Periode': {
+                'map': 'yearperiod', 'null': False,
+            },
+            'Grootboek': {
+                'map': 'ledger', 'type': int, 'null': False,
+            },
+            'Naam': {
+                'map': 'ledger_name', 'null': False,
+            },
+            'Dagboek': {
+                'map': 'journal', 'null': False,
+            },
+            'Boekst.nr.': {
+                'map': 'booking_number', 'type': int, 'null': False,
+            },
+            'Valuta': {
+                'map': 'curcode', 'null': False,
+            },
+            'Bedrag': {
+                'map': 'valuesigned', 'type': Decimal, 'null': False,
+            },
+            'Euro': {
+                'map': 'base_valuesigned', 'type': Decimal, 'null': False,
+            },
+            'Openstaand bedrag': {
+                'map': 'openbase_valuesigned', 'type': Decimal, 'null': False,
+            },
+            'Betaalstatus': {
+                'map': 'payment_status', 'null': False,
+            },
+            'Regime': {
+                'map': 'regime', 'null': True,
+            }
+        },
+    },
     'general_ledger_details': {
         'key_properties': 'id',
         'replication_method': 'INCREMENTAL',
@@ -454,6 +601,302 @@ STREAMS: MappingProxyType = MappingProxyType({
             },
             'transactie type groep': {
                 'map': 'type', 'null': False,
+            },
+        },
+    },
+    'annual_report': {
+        'key_properties': 'id',
+        'replication_method': 'INCREMENTAL',
+        'replication_key': 'id',
+        'bookmark': 'start_date',
+        'mapping': {
+            'id': {
+                'map': 'id', 'null': False,
+            },
+            'Administratie': {
+                'map': 'office', 'null': False,
+            },
+            'Adm.naam': {
+                'map': 'office_name', 'null': False,
+            },
+            'Jaar': {
+                'map': 'year', 'type': int, 'null': False,
+            },
+            'Periode': {
+                'map': 'period', 'type': int, 'null': False,
+            },
+            'Grootboekrek.': {
+                'map': 'ledger', 'type': int, 'null': False,
+            },
+            'Grootboekrek.naam': {
+                'map': 'ledger_name', 'null': False,
+            },
+            'Dimensietype 1': {
+                'map': 'ledger_type', 'null': False,
+            },
+            'Kpl./rel.': {
+                'map': 'cost_centre', 'null': True,
+            },
+            'Kpl.-/rel.naam': {
+                'map': 'cost_centre_name', 'null': True,
+            },
+            'Act./proj.': {
+                'map': 'project', 'null': True,
+            },
+            'Act.-/proj.naam': {
+                'map': 'project_name', 'null': True,
+            },
+            'Dimensietype 3': {
+                'map': 'project_type', 'null': True,
+            },
+            'Basisbedrag': {
+                'map': 'base_valuesigned', 'type': Decimal, 'null': False,
+            },
+            'Rapportagebedrag': {
+                'map': 'report_valuesigned', 'type': Decimal, 'null': True,
+            },
+            'D/C': {
+                'map': 'debitcredit', 'null': False,
+            },
+            'Aantal': {
+                'map': 'quantity', 'type': int, 'null': True,
+            },
+            'Groep 1': {
+                'map': 'group1', 'null': False,
+            },
+            'Groepnaam 1': {
+                'map': 'group1_name', 'null': False,
+            },
+            'Groep 2': {
+                'map': 'group2', 'null': False,
+            },
+            'Groepnaam 2': {
+                'map': 'group2_name', 'null': False,
+            },
+            'Groep 3': {
+                'map': 'group3', 'null': True,
+            },
+            'Groepnaam 3': {
+                'map': 'group3_name', 'null': True,
+            },
+            'Groep 4': {
+                'map': 'group4', 'null': True,
+            },
+            'Groepnaam 4': {
+                'map': 'group4_name', 'null': True,
+            },
+            'Groep 5': {
+                'map': 'group5', 'null': True,
+            },
+            'Groepnaam 5': {
+                'map': 'group5_name', 'null': True,
+            }
+        },
+    },
+    'annual_report_multicurrency': {
+        'key_properties': 'id',
+        'replication_method': 'INCREMENTAL',
+        'replication_key': 'id',
+        'bookmark': 'start_date',
+        'mapping': {
+            'id': {
+                'map': 'id', 'null': False,
+            },
+            'Administratie': {
+                'map': 'office', 'null': False,
+            },
+            'Adm.naam': {
+                'map': 'office_name', 'null': False,
+            },
+            'Jaar': {
+                'map': 'year', 'type': int, 'null': False,
+            },
+            'Periode': {
+                'map': 'period', 'type': int, 'null': False,
+            },
+            'Type': {
+                'map': 'ledger_type', 'null': False,
+            },
+            'Grootboekrek.': {
+                'map': 'ledger', 'type': int, 'null': False,
+            },
+            'Grootboekrek.naam': {
+                'map': 'ledger_name', 'null': False,
+            },
+            'Valuta': {
+                'map': 'curcode', 'null': False,
+            },
+            'Bedrag': {
+                'map': 'valuesigned', 'type': Decimal, 'null': False,
+            },
+            'Basisbedrag': {
+                'map': 'base_valuesigned', 'type': Decimal, 'null': False,
+            },
+            'Rapportagebedrag': {
+                'map': 'report_valuesigned', 'type': Decimal, 'null': True,
+            },
+            'D/C': {
+                'map': 'debitcredit', 'null': False,
+            },
+            'Status': {
+                'map': 'status', 'null': False,
+            },
+            'Groep 1': {
+                'map': 'group1', 'null': False,
+            },
+            'Groepnaam 1': {
+                'map': 'group1_name', 'null': False,
+            },
+            'Groep 2': {
+                'map': 'group2', 'null': False,
+            },
+            'Groepnaam 2': {
+                'map': 'group2_name', 'null': False,
+            },
+            'Groep 3': {
+                'map': 'group3', 'null': True,
+            },
+            'Groepnaam 3': {
+                'map': 'group3_name', 'null': True,
+            },
+            'Groep 4': {
+                'map': 'group4', 'null': True,
+            },
+            'Groepnaam 4': {
+                'map': 'group4_name', 'null': True,
+            },
+            'Groep 5': {
+                'map': 'group5', 'null': True,
+            },
+            'Groepnaam 5': {
+                'map': 'group5_name', 'null': True,
+            }
+        },
+    },
+    'suppliers': {
+        'key_properties': 'id',
+        'replication_method': 'INCREMENTAL',
+        'replication_key': 'id',
+        'bookmark': 'start_date',
+        'mapping': {
+            'id': {
+                'map': 'id', 'null': False,
+            },
+            'Administratie': {
+                'map': 'office', 'null': False,
+            },
+            'Adm.naam': {
+                'map': 'office_name', 'null': False,
+            },
+            'Jaar': {
+                'map': 'year', 'type': int, 'null': False,
+            },
+            'Periode': {
+                'map': 'period', 'type': int, 'null': False,
+            },
+            'Dagboek': {
+                'map': 'journal', 'null': False,
+            },
+            'Dagboeknaam': {
+                'map': 'journal_name', 'null': False,
+            },
+            'Boekingsnummer': {
+                'map': 'booking_number', 'type': int, 'null': False,
+            },
+            'Status': {
+                'map': 'booking_status', 'null': False,
+            },
+            'Boekdatum': {
+                'map': 'booking_date', 'type': date_parser, 'null': False,
+            },
+            'Vervaldatum': {
+                'map': 'expire_date', 'type': date_parser, 'null': True,
+            },
+            'Factuurnummer': {
+                'map': 'invoice_number', 'null': True,
+            },
+            'Valuta': {
+                'map': 'curcode', 'null': False,
+            },
+            'Grootboekrek.': {
+                'map': 'ledger', 'type': int, 'null': False,
+            },
+            'Grootboekrek.naam': {
+                'map': 'ledger_name', 'null': False,
+            },
+            'Kpl./rel.': {
+                'map': 'cost_centre', 'type': int, 'null': False,
+            },
+            'Kpl.-/rel.naam': {
+                'map': 'cost_centre_name', 'null': False,
+            },
+            'Bedrag': {
+                'map': 'valuesigned', 'type': Decimal, 'null': False,
+            },
+            'Basisbedrag': {
+                'map': 'base_valuesigned', 'type': Decimal, 'null': False,
+            },
+            'Rapportagebedrag': {
+                'map': 'report_valuesigned', 'type': Decimal, 'null': True,
+            },
+            'Open amount transaction value': {
+                'map': 'open_valuesigned', 'type': Decimal, 'null': True,
+            },
+            'Open amount base value': {
+                'map': 'openbase_valuesigned', 'type': Decimal, 'null': True,
+            },
+            'Betaalstatus': {
+                'map': 'payment_status', 'null': False,
+            },
+            'Betaaldatum': {
+                'map': 'payment_date', 'type': date_parser, 'null': False,
+            },
+            'Afletternummer': {
+                'map': 'affiliation_number', 'type': int, 'null': False,
+            },
+            'Betaalnummer': {
+                'map': 'payment_number', 'null': True,
+            },
+            'Wijzigingsdatum': {
+                'map': 'modification_date', 'type': date_parser, 'null': False,
+            },
+            'Vrij tekstveld 1': {
+                'map': 'freetext1', 'null': True,
+            },
+            'Vrij tekstveld 2': {
+                'map': 'freetext2', 'null': True,
+            },
+            'Vrij tekstveld 3': {
+                'map': 'freetext3', 'null': True,
+            },
+        },
+    },
+    'transaction_summary': {
+        'key_properties': 'id',
+        'replication_method': 'INCREMENTAL',
+        'replication_key': 'id',
+        'bookmark': 'start_date',
+        'mapping': {
+            'id': {
+                'map': 'id', 'null': False,
+            },
+            'Administratie': {
+                'map': 'office', 'null': False,
+            },
+            'Adm.naam': {
+                'map': 'office_name', 'null': False,
+            },
+            'Dagboek': {
+                'map': 'journal', 'null': False,
+            },
+            'Jaar/periode (JJJJ/PP)': {
+                'map': 'yearperiod', 'null': False,
+            },
+            'Aantal transacties': {
+                'map': 'transaction_count', 'type': int, 'null': False,
+            },
+            'Aantal transactie regels': {
+                'map': 'transaction_line_count', 'type': int, 'null': False,
             },
         },
     },

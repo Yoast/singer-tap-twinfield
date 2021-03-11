@@ -1,0 +1,119 @@
+{
+	"selected": true,
+	"type": [
+		"null",
+		"object"
+	],
+	"additionalProperties": false,
+	"properties": {
+		"id": {
+			"type": "number",
+			"format": "integer"
+		},
+        "office": {
+			"type": "string"
+		},
+		"office_name": {
+			"type": "string"
+		},
+        "year": {
+			"type": "number",
+			"format": "integer"
+		},
+		"period": {
+			"type": "number",
+			"format": "integer"
+		},
+        "ledger_type": {
+			"type": "string"
+		},
+        "ledger": {
+			"type": "number",
+			"format": "integer"
+		},
+		"ledger_name": {
+			"type": "string"
+		},
+        "curcode": {
+			"type": "string"
+		},
+        "valuesigned": {
+			"type": "number"
+		},
+		"base_valuesigned": {
+			"type": "number"
+		},
+		"report_valuesigned": {
+			"type": [
+				"null",
+				"number"
+			]
+		},
+		"debitcredit": {
+			"type": "string"
+		},
+        "status": {
+			"type": "string"
+		},
+        "group1": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"group1_name": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"group2": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"group2_name": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"group3": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"group3_name": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"group4": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"group4_name": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"group5": {
+			"type": [
+				"null",
+				"string"
+			]
+		},
+		"group5_name": {
+			"type": [
+				"null",
+				"string"
+			]
+		}
+    }
+}
