@@ -89,65 +89,30 @@
 			],
 			"format": "integer"
 		},
-        "group1": {
+		"groups": {
 			"type": [
-				"null",
-				"string"
-			]
-		},
-		"group1_name": {
-			"type": [
-				"null",
-				"string"
-			]
-		},
-		"group2": {
-			"type": [
-				"null",
-				"string"
-			]
-		},
-		"group2_name": {
-			"type": [
-				"null",
-				"string"
-			]
-		},
-		"group3": {
-			"type": [
-				"null",
-				"string"
-			]
-		},
-		"group3_name": {
-			"type": [
-				"null",
-				"string"
-			]
-		},
-		"group4": {
-			"type": [
-				"null",
-				"string"
-			]
-		},
-		"group4_name": {
-			"type": [
-				"null",
-				"string"
-			]
-		},
-		"group5": {
-			"type": [
-				"null",
-				"string"
-			]
-		},
-		"group5_name": {
-			"type": [
-				"null",
-				"string"
-			]
+			  "null",
+			  "array"
+			],
+			"additionalProperties": false,
+			"items": {
+			  "type": "object",
+			  "additionalProperties": false,
+			  "properties": {
+				"group": {
+				  "type": [
+					"null",
+					"string"
+				  ]
+				},
+				"group_name": {
+				  "type": [
+					"null",
+					"string"
+				  ]
+				}
+			  }
+			}
 		}
     }
 }

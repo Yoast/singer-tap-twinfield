@@ -142,14 +142,76 @@ def clean_general_ledger_details(
 
     period: str = row['Periode']
     period = period.replace('/', '')
-    row['id'] = int(period + number)
 
-    # If a mapping has been defined in STREAMS, apply it
+    response_row = {
+        'id': int(period + number),
+        'Administratie': row.get('Administratie'),
+        'Adm.naam': row.get('Adm.naam'),
+        'Jaar': row.get('Jaar'),
+        'Periode': row.get('Periode'),
+        'Dagboek': row.get('Dagboek'),
+        'Boekingsnummer': row.get('Boekingsnummer'),
+        'Status': row.get('Status'),
+        'Boekdatum': row.get('Boekdatum'),
+        'Valuta': row.get('Valuta'),
+        'Relatie': row.get('Relatie'),
+        'Relatienaam': row.get('Relatienaam'),
+        'Invoerdatum': row.get('Invoerdatum'),
+        'Gebruikersnaam': row.get('Gebruikersnaam'),
+        'Grootboekrek.': row.get('Grootboekrek.'),
+        'Grootboekrek.naam': row.get('Grootboekrek.naam'),
+        'Dimensietype 1': row.get('Dimensietype 1'),
+        'Kpl./rel.': row.get('Kpl./rel.'),
+        'Kpl.-/rel.naam': row.get('Kpl.-/rel.naam'),
+        'Dimensietype 2': row.get('Dimensietype 2'),
+        'Act./proj.': row.get('Act./proj.'),
+        'Act.-/proj.naam': row.get('Act.-/proj.naam'),
+        'Dimensietype 3': row.get('Dimensietype 3'),
+        'Bedrag': row.get('Bedrag'),
+        'Basisbedrag': row.get('Basisbedrag'),
+        'Rapportagebedrag': row.get('Rapportagebedrag'),
+        'D/C': row.get('D/C'),
+        'Btw-code': row.get('Btw-code'),
+        'Btw-bedrag': row.get('Btw-bedrag'),
+        'Aantal': row.get('Aantal'),
+        'Cheque': row.get('Cheque'),
+        'Omschrijving': row.get('Omschrijving'),
+        'Factuurnummer': row.get('Factuurnummer'),
+        'groups': [
+            {
+                'group': row.get('Groep 1'),
+                'group_name': row.get('Groepnaam 1'),
+            },
+            {
+                'group': row.get('Groep 2'),
+                'group_name': row.get('Groepnaam 2'),
+            },
+            {
+                'group': row.get('Groep 3'),
+                'group_name': row.get('Groepnaam 3'),
+            },
+            {
+                'group': row.get('Groep 4'),
+                'group_name': row.get('Groepnaam 4'),
+            },
+            {
+                'group': row.get('Groep 5'),
+                'group_name': row.get('Groepnaam 5'),
+            },
+        ],
+        'Vrij tekstveld 1': row.get('Vrij tekstveld 1'),
+        'Vrij tekstveld 2': row.get('Vrij tekstveld 2'),
+        'Vrij tekstveld 3': row.get('Vrij tekstveld 3'),
+        'Boekingsoorsprong': row.get('Boekingsoorsprong'),
+        'transactie type groep': row.get('transactie type groep'),
+    }
+
+    # # If a mapping has been defined in STREAMS, apply it
     if mapping:
-        return clean_row(row, mapping)
+        return clean_row(response_row, mapping)
 
     # Else return the original row
-    return row
+    return response_row
 
 
 def clean_general_ledger_transactions(
@@ -241,14 +303,55 @@ def clean_annual_report(
 
     period: str = row['Periode']
     period = period.replace('/', '')
-    row['id'] = int(period + number)
+
+    response_row = {
+        'id': int(period + number),
+        'Administratie': row.get('Administratie'),
+        'Adm.naam': row.get('Adm.naam'),
+        'Jaar': row.get('Jaar'),
+        'Periode': row.get('Periode'),
+        'Grootboekrek.': row.get('Grootboekrek.'),
+        'Grootboekrek.naam': row.get('Grootboekrek.naam'),
+        'Dimensietype 1': row.get('Dimensietype 1'),
+        'Kpl./rel.': row.get('Kpl./rel.'),
+        'Kpl.-/rel.naam': row.get('Kpl.-/rel.naam'),
+        'Act./proj.': row.get('Act./proj.'),
+        'Act.-/proj.naam': row.get('Act.-/proj.naam'),
+        'Dimensietype 3': row.get('Dimensietype 3'),
+        'Basisbedrag': row.get('Basisbedrag'),
+        'Rapportagebedrag': row.get('Rapportagebedrag'),
+        'D/C': row.get('D/C'),
+        'Aantal': row.get('Aantal'),
+        'groups': [
+            {
+                'group': row.get('Groep 1'),
+                'group_name': row.get('Groepnaam 1'),
+            },
+            {
+                'group': row.get('Groep 2'),
+                'group_name': row.get('Groepnaam 2'),
+            },
+            {
+                'group': row.get('Groep 3'),
+                'group_name': row.get('Groepnaam 3'),
+            },
+            {
+                'group': row.get('Groep 4'),
+                'group_name': row.get('Groepnaam 4'),
+            },
+            {
+                'group': row.get('Groep 5'),
+                'group_name': row.get('Groepnaam 5'),
+            },
+        ],
+    }
 
     # If a mapping has been defined in STREAMS, apply it
     if mapping:
-        return clean_row(row, mapping)
+        return clean_row(response_row, mapping)
 
     # Else return the original row
-    return row
+    return response_row
 
 
 def clean_annual_report_multicurrency(
@@ -274,14 +377,52 @@ def clean_annual_report_multicurrency(
 
     period: str = row['Periode']
     period = period.replace('/', '')
-    row['id'] = int(period + number)
+
+    response_row = {
+        'id': int(period + number),
+        'Administratie': row.get('Administratie'),
+        'Adm.naam': row.get('Adm.naam'),
+        'Jaar': row.get('Jaar'),
+        'Periode': row.get('Periode'),
+        'Type': row.get('Type'),
+        'Grootboekrek.': row.get('Grootboekrek.'),
+        'Grootboekrek.naam': row.get('Grootboekrek.naam'),
+        'Valuta': row.get('Valuta'),
+        'Bedrag': row.get('Bedrag'),
+        'Basisbedrag': row.get('Basisbedrag'),
+        'Rapportagebedrag': row.get('Rapportagebedrag'),
+        'D/C': row.get('D/C'),
+        'Status': row.get('Status'),
+        'groups': [
+            {
+                'group': row.get('Groep 1'),
+                'group_name': row.get('Groepnaam 1'),
+            },
+            {
+                'group': row.get('Groep 2'),
+                'group_name': row.get('Groepnaam 2'),
+            },
+            {
+                'group': row.get('Groep 3'),
+                'group_name': row.get('Groepnaam 3'),
+            },
+            {
+                'group': row.get('Groep 4'),
+                'group_name': row.get('Groepnaam 4'),
+            },
+            {
+                'group': row.get('Groep 5'),
+                'group_name': row.get('Groepnaam 5'),
+            },
+        ],
+    }
 
     # If a mapping has been defined in STREAMS, apply it
     if mapping:
-        return clean_row(row, mapping)
+        return clean_row(response_row, mapping)
 
     # Else return the original row
-    return row
+    return response_row
 
 
 def clean_suppliers(
@@ -348,6 +489,7 @@ def clean_transaction_summary(
 
     # Else return the original row
     return row
+
 
 def clean_transaction_list(
     row: dict,

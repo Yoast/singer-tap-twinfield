@@ -557,35 +557,8 @@ STREAMS: MappingProxyType = MappingProxyType({
             'Factuurnummer': {
                 'map': 'invoice_number', 'null': True,
             },
-            'Groep 1': {
-                'map': 'group1', 'null': False,
-            },
-            'Groepnaam 1': {
-                'map': 'group1_name', 'null': False,
-            },
-            'Groep 2': {
-                'map': 'group2', 'null': False,
-            },
-            'Groepnaam 2': {
-                'map': 'group2_name', 'null': False,
-            },
-            'Groep 3': {
-                'map': 'group3', 'null': True,
-            },
-            'Groepnaam 3': {
-                'map': 'group3_name', 'null': True,
-            },
-            'Groep 4': {
-                'map': 'group4', 'null': True,
-            },
-            'Groepnaam 4': {
-                'map': 'group4_name', 'null': True,
-            },
-            'Groep 5': {
-                'map': 'group5', 'null': True,
-            },
-            'Groepnaam 5': {
-                'map': 'group5_name', 'null': True,
+            'groups': {
+                'map': 'groups', 'null': True,
             },
             'Vrij tekstveld 1': {
                 'map': 'freetext1', 'null': True,
@@ -661,36 +634,9 @@ STREAMS: MappingProxyType = MappingProxyType({
             'Aantal': {
                 'map': 'quantity', 'type': int, 'null': True,
             },
-            'Groep 1': {
-                'map': 'group1', 'null': False,
+            'groups': {
+                'map': 'groups', 'null': True,
             },
-            'Groepnaam 1': {
-                'map': 'group1_name', 'null': False,
-            },
-            'Groep 2': {
-                'map': 'group2', 'null': False,
-            },
-            'Groepnaam 2': {
-                'map': 'group2_name', 'null': False,
-            },
-            'Groep 3': {
-                'map': 'group3', 'null': True,
-            },
-            'Groepnaam 3': {
-                'map': 'group3_name', 'null': True,
-            },
-            'Groep 4': {
-                'map': 'group4', 'null': True,
-            },
-            'Groepnaam 4': {
-                'map': 'group4_name', 'null': True,
-            },
-            'Groep 5': {
-                'map': 'group5', 'null': True,
-            },
-            'Groepnaam 5': {
-                'map': 'group5_name', 'null': True,
-            }
         },
     },
     'annual_report_multicurrency': {
@@ -741,36 +687,9 @@ STREAMS: MappingProxyType = MappingProxyType({
             'Status': {
                 'map': 'status', 'null': False,
             },
-            'Groep 1': {
-                'map': 'group1', 'null': False,
+            'groups': {
+                'map': 'groups', 'null': True,
             },
-            'Groepnaam 1': {
-                'map': 'group1_name', 'null': False,
-            },
-            'Groep 2': {
-                'map': 'group2', 'null': False,
-            },
-            'Groepnaam 2': {
-                'map': 'group2_name', 'null': False,
-            },
-            'Groep 3': {
-                'map': 'group3', 'null': True,
-            },
-            'Groepnaam 3': {
-                'map': 'group3_name', 'null': True,
-            },
-            'Groep 4': {
-                'map': 'group4', 'null': True,
-            },
-            'Groepnaam 4': {
-                'map': 'group4_name', 'null': True,
-            },
-            'Groep 5': {
-                'map': 'group5', 'null': True,
-            },
-            'Groepnaam 5': {
-                'map': 'group5_name', 'null': True,
-            }
         },
     },
     'suppliers': {
