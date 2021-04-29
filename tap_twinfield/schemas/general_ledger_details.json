@@ -7,8 +7,7 @@
 	"additionalProperties": false,
 	"properties": {
 		"id": {
-			"type": "number",
-			"format": "integer"
+			"type": "string"
 		},
 		"office": {
 			"type": "string"

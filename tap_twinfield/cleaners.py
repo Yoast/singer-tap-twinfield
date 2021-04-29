@@ -3,6 +3,7 @@
 
 from types import MappingProxyType
 from typing import Any, Optional
+import hashlib
 
 from tap_twinfield.streams import STREAMS
 
@@ -105,13 +106,10 @@ def clean_bank_transactions(
     """
     # Get the mapping from the STREAMS
     mapping: Optional[dict] = STREAMS['bank_transactions'].get('mapping')
-
+    
     # Create primary key
-    number: str = str(row_number).rjust(10, '0')
-
-    period: str = row['Periode']
-    period = period.replace('/', '')
-    row['id'] = int(period + number)
+    row_string = str(row)
+    row['id'] = hashlib.sha1(row_string.encode()).hexdigest()
 
     # If a mapping has been defined in STREAMS, apply it
     if mapping:
@@ -138,13 +136,10 @@ def clean_general_ledger_details(
     mapping: Optional[dict] = STREAMS['general_ledger_details'].get('mapping')
 
     # Create primary key
-    number: str = str(row_number).rjust(10, '0')
-
-    period: str = row['Periode']
-    period = period.replace('/', '')
+    row_string = str(row)
 
     response_row = {
-        'id': int(period + number),
+        'id': hashlib.sha1(row_string.encode()).hexdigest(),
         'Administratie': row.get('Administratie'),
         'Adm.naam': row.get('Adm.naam'),
         'Jaar': row.get('Jaar'),
@@ -233,11 +228,9 @@ def clean_general_ledger_transactions(
     )
 
     # Create primary key
-    number: str = str(row_number).rjust(10, '0')
 
-    period: str = row['Periode']
-    period = period.replace('/', '')
-    row['id'] = int(period + number)
+    row_string = str(row)
+    row['id'] = hashlib.sha1(row_string.encode()).hexdigest()
 
     # If a mapping has been defined in STREAMS, apply it
     if mapping:
@@ -266,11 +259,10 @@ def clean_transactions_to_be_matched(
     )
 
     # Create primary key
-    number: str = str(row_number).rjust(10, '0')
 
-    period: str = row['Periode']
-    period = period.replace('/', '')
-    row['id'] = int(period + number)
+    row_string = str(row)
+    row['id'] = hashlib.sha1(row_string.encode()).hexdigest()
+
 
     # If a mapping has been defined in STREAMS, apply it
     if mapping:
@@ -299,13 +291,10 @@ def clean_annual_report(
     )
 
     # Create primary key
-    number: str = str(row_number).rjust(10, '0')
-
-    period: str = row['Periode']
-    period = period.replace('/', '')
+    row_string = str(row)
 
     response_row = {
-        'id': int(period + number),
+        'id': hashlib.sha1(row_string.encode()).hexdigest(),
         'Administratie': row.get('Administratie'),
         'Adm.naam': row.get('Adm.naam'),
         'Jaar': row.get('Jaar'),
@@ -373,13 +362,10 @@ def clean_annual_report_multicurrency(
     )
 
     # Create primary key
-    number: str = str(row_number).rjust(10, '0')
-
-    period: str = row['Periode']
-    period = period.replace('/', '')
+    row_string = str(row)
 
     response_row = {
-        'id': int(period + number),
+        'id': hashlib.sha1(row_string.encode()).hexdigest(),
         'Administratie': row.get('Administratie'),
         'Adm.naam': row.get('Adm.naam'),
         'Jaar': row.get('Jaar'),
@@ -444,11 +430,8 @@ def clean_suppliers(
     )
 
     # Create primary key
-    number: str = str(row_number).rjust(10, '0')
-
-    period: str = row['Periode']
-    period = period.replace('/', '')
-    row['id'] = int(period + number)
+    row_string = str(row)
+    row['id'] = hashlib.sha1(row_string.encode()).hexdigest()
 
     # If a mapping has been defined in STREAMS, apply it
     if mapping:
@@ -477,11 +460,8 @@ def clean_transaction_summary(
     )
 
     # Create primary key
-    number: str = str(row_number).rjust(10, '0')
-
-    period: str = row['Jaar/periode (JJJJ/PP)']
-    period = period.replace('/', '')
-    row['id'] = int(period + number)
+    row_string = str(row)
+    row['id'] = hashlib.sha1(row_string.encode()).hexdigest()
 
     # If a mapping has been defined in STREAMS, apply it
     if mapping:
@@ -510,11 +490,8 @@ def clean_transaction_list(
     )
 
     # Create primary key
-    number: str = str(row_number).rjust(10, '0')
-
-    period: str = row['Periode']
-    period = period.replace('/', '')
-    row['id'] = int(period + number)
+    row_string = str(row)
+    row['id'] = hashlib.sha1(row_string.encode()).hexdigest()
 
     # If a mapping has been defined in STREAMS, apply it
     if mapping:

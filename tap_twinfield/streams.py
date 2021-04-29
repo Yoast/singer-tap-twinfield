@@ -262,7 +262,7 @@ STREAMS: MappingProxyType = MappingProxyType({
         'bookmark': 'start_date',
         'mapping': {
             'id': {
-                'map': 'id', 'type': int, 'null': False,
+                'map': 'id', 'null': False,
             },
             'Periode': {
                 'map': 'yearperiod', 'null': False,
@@ -312,7 +312,7 @@ STREAMS: MappingProxyType = MappingProxyType({
         'bookmark': 'start_date',
         'mapping': {
             'id': {
-                'map': 'id', 'type': int, 'null': False,
+                'map': 'id', 'null': False,
             },
             'Periode': {
                 'map': 'yearperiod', 'null': False,
@@ -371,7 +371,7 @@ STREAMS: MappingProxyType = MappingProxyType({
         'bookmark': 'start_date',
         'mapping': {
             'id': {
-                'map': 'id', 'type': int, 'null': False,
+                'map': 'id', 'null': False,
             },
             'Periode': {
                 'map': 'yearperiod', 'null': False,
@@ -415,7 +415,7 @@ STREAMS: MappingProxyType = MappingProxyType({
         'bookmark': 'start_date',
         'mapping': {
             'id': {
-                'map': 'id', 'type': int, 'null': False,
+                'map': 'id', 'null': False,
             },
             'Periode': {
                 'map': 'yearperiod', 'null': False,
